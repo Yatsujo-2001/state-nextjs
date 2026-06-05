@@ -939,7 +939,7 @@
     </div>
   </footer>
 
-  <!-- products.js を先に読み込む（PRODUCTS 配列を定義） -->
+  <!-- フォールバック用：Sheetsが取得できない場合に使うローカルデータ -->
   <script src="products.js"></script>
 
   <!-- ============================================================
@@ -947,29 +947,91 @@
        ============================================================ -->
   <script>
     /* ============================================================
-       商品グリッド描画
-       products.js の PRODUCTS 配列を読み込んでHTMLを生成する
-       ============================================================ */
+       【設定】Google Sheets の CSV URL をここに貼り付けてください
 
+       取得手順：
+         1. Googleスプレッドシートを開く
+         2. メニュー「ファイル」→「共有」→「ウェブに公開」
+         3. 「カンマ区切り形式（.csv）」を選択して「公開」
+         4. 表示されたURLをコピーしてここに貼り付ける
+       ============================================================ */
+    const SHEETS_CSV_URL = 'YOUR_GOOGLE_SHEETS_CSV_URL_HERE';
+
+    /* ZOZOブランドページ（個別URLが未設定の商品のリンク先） */
     const ZOZO_BRAND = 'https://zozo.jp/brand/benua/';
 
+    /* 全商品データを保持（フィルタ・検索で使いまわす） */
+    let allProducts = [];
+
+    /* ============================================================
+       CSV パーサー
+       Google Sheetsが返すCSVをオブジェクト配列に変換する
+       ============================================================ */
+    function parseCSV(csv) {
+      const lines = csv.trim().split('\n');
+      if (lines.length < 2) return [];
+
+      // ヘッダー行をキーに変換（小文字・トリム）
+      const headers = splitCSVLine(lines[0]).map(h => h.toLowerCase().trim());
+
+      return lines.slice(1).map(line => {
+        const vals = splitCSVLine(line);
+        const obj = {};
+        headers.forEach((h, i) => { obj[h] = (vals[i] || '').trim(); });
+
+        return {
+          name:     obj['name']     || '',
+          price:    parseInt(obj['price']) || 0,
+          image:    obj['image']    || '',
+          zozo_url: obj['zozo_url'] || ZOZO_BRAND,
+          category: obj['category'] || 'all',
+          // TRUE / true / 1 のどれでも売り切れ扱い
+          sold_out: /^(true|1)$/i.test(obj['sold_out'] || '')
+        };
+      }).filter(p => p.name); // 名前が空の行は除外
+    }
+
+    /* クォートを考慮したCSV行分割 */
+    function splitCSVLine(line) {
+      const result = [];
+      let cur = '';
+      let inQuote = false;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') {
+          // 連続するダブルクォートはエスケープ
+          if (inQuote && line[i + 1] === '"') { cur += '"'; i++; }
+          else { inQuote = !inQuote; }
+        } else if (ch === ',' && !inQuote) {
+          result.push(cur); cur = '';
+        } else {
+          cur += ch;
+        }
+      }
+      result.push(cur);
+      return result;
+    }
+
+    /* ============================================================
+       商品グリッド描画
+       ============================================================ */
     function formatPrice(n) {
       return '¥' + n.toLocaleString('ja-JP');
     }
 
     function renderProducts(list) {
-      const grid = document.getElementById('productGrid');
-      const countEl = document.getElementById('productCount');
+      const grid     = document.getElementById('productGrid');
+      const countEl  = document.getElementById('productCount');
 
       if (!list.length) {
-        grid.innerHTML = '<p style="padding:40px 28px;font-size:10px;letter-spacing:.15em;">NO ITEMS FOUND.</p>';
+        grid.innerHTML = '<p style="padding:48px 28px;font-size:10px;letter-spacing:.2em;color:#999;">NO ITEMS FOUND.</p>';
         if (countEl) countEl.textContent = '0 Items';
         return;
       }
 
       grid.innerHTML = list.map(p => `
         <a class="product-item${p.sold_out ? ' is-sold-out' : ''}"
-           href="${p.zozo_url || ZOZO_BRAND}"
+           href="${p.zozo_url}"
            target="_blank"
            rel="noopener"
            aria-label="${p.name} ${formatPrice(p.price)}">
@@ -987,48 +1049,74 @@
       if (countEl) countEl.textContent = list.length + ' Items';
     }
 
-    /* ---------- カテゴリフィルター ---------- */
+    function showLoading() {
+      document.getElementById('productGrid').innerHTML =
+        '<p style="padding:48px 28px;font-size:10px;letter-spacing:.2em;color:#bbb;">LOADING...</p>';
+      document.getElementById('productCount').textContent = '— Items';
+    }
+
+    /* ============================================================
+       Googleスプレッドシートから商品データを取得
+       失敗した場合は products.js のローカルデータを使う
+       ============================================================ */
+    async function loadProducts() {
+      showLoading();
+
+      // URLが未設定 → products.js のデータをそのまま使う
+      if (!SHEETS_CSV_URL || SHEETS_CSV_URL === 'YOUR_GOOGLE_SHEETS_CSV_URL_HERE') {
+        console.info('[Benua] Sheets URL未設定。products.js のデータを使用します。');
+        allProducts = typeof PRODUCTS !== 'undefined' ? PRODUCTS : [];
+        renderProducts(allProducts);
+        return;
+      }
+
+      try {
+        const res = await fetch(SHEETS_CSV_URL);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const csv = await res.text();
+        allProducts = parseCSV(csv);
+        renderProducts(allProducts);
+        console.info('[Benua] Sheetsから' + allProducts.length + '件読み込みました。');
+      } catch (err) {
+        console.warn('[Benua] Sheets取得失敗。products.js にフォールバックします。', err);
+        allProducts = typeof PRODUCTS !== 'undefined' ? PRODUCTS : [];
+        renderProducts(allProducts);
+      }
+    }
+
+    /* ============================================================
+       カテゴリフィルター
+       ============================================================ */
+    const categoryMap = {
+      'Collections':   'all',
+      'Ready to Wear': 'all',
+      'Tops':          'tops',
+      'Pants':         'bottoms',
+      'Accessories':   'accessories',
+      'Styling':       'styling'
+    };
+
     let currentFilter = 'all';
 
     function filterProducts(category) {
       currentFilter = category;
-      const filtered = category === 'all'
-        ? PRODUCTS
-        : PRODUCTS.filter(p => p.category === category);
-      renderProducts(filtered);
-      updateFilterUI(category);
+      const list = category === 'all'
+        ? allProducts
+        : allProducts.filter(p => p.category === category);
+      renderProducts(list);
     }
-
-    function updateFilterUI(active) {
-      document.querySelectorAll('[data-filter]').forEach(btn => {
-        btn.classList.toggle('filter-active', btn.dataset.filter === active);
-      });
-    }
-
-    /* ---------- 初期描画 ---------- */
-    renderProducts(PRODUCTS);
-
-    /* ---------- カテゴリグリッド → フィルター ---------- */
-    const categoryMap = {
-      'Collections':    'all',
-      'Ready to Wear':  'all',
-      'Tops':           'tops',
-      'Pants':          'bottoms',
-      'Accessories':    'accessories',
-      'Styling':        'styling'
-    };
 
     document.querySelectorAll('.category-item').forEach(item => {
       item.addEventListener('click', () => {
-        const name = item.querySelector('.category-name').textContent.trim();
-        const filter = categoryMap[name] || 'all';
+        const label  = item.querySelector('.category-name').textContent.trim();
+        const filter = categoryMap[label] || 'all';
         filterProducts(filter);
         document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' });
       });
     });
 
     /* ============================================================
-       Search Overlay
+       Search Overlay（商品名でリアルタイム絞り込み）
        ============================================================ */
     function openSearch() {
       document.getElementById('searchOverlay').classList.add('is-open');
@@ -1041,15 +1129,12 @@
       document.body.style.overflow = '';
     }
 
-    /* 検索：商品名で絞り込み */
-    document.getElementById('searchInput').addEventListener('input', (e) => {
+    document.getElementById('searchInput').addEventListener('input', e => {
       const q = e.target.value.trim().toLowerCase();
-      if (!q) {
-        renderProducts(PRODUCTS);
-        return;
-      }
-      const matched = PRODUCTS.filter(p => p.name.toLowerCase().includes(q));
-      renderProducts(matched);
+      const base = currentFilter === 'all'
+        ? allProducts
+        : allProducts.filter(p => p.category === currentFilter);
+      renderProducts(q ? base.filter(p => p.name.toLowerCase().includes(q)) : base);
     });
 
     /* ============================================================
@@ -1067,10 +1152,14 @@
       document.body.style.overflow = '';
     }
 
-    /* ESC で全オーバーレイを閉じる */
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', e => {
       if (e.key === 'Escape') { closeSearch(); closeMenu(); }
     });
+
+    /* ============================================================
+       起動：商品データ読み込み
+       ============================================================ */
+    loadProducts();
   </script>
 
 </body>
