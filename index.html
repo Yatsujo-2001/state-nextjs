@@ -619,6 +619,30 @@
       text-decoration: none;
     }
 
+    /* SOLD OUT 状態 */
+    .product-item.is-sold-out .product-image-wrap img {
+      opacity: 0.4;
+    }
+
+    .product-item.is-sold-out .product-price::after {
+      content: ' — SOLD OUT';
+      color: #999;
+    }
+
+    /* SOLD OUT バッジ */
+    .sold-out-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-size: 8px;
+      letter-spacing: 0.2em;
+      background: #000;
+      color: #fff;
+      padding: 3px 7px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
     /* ============================================================
        RESPONSIVE — MOBILE (≤768px)
        ============================================================ */
@@ -806,7 +830,7 @@
        ============================================================ -->
   <div class="section-bar">
     <span class="section-bar-label">All Products</span>
-    <span class="section-bar-count">12 Items</span>
+    <span class="section-bar-count" id="productCount">— Items</span>
   </div>
 
   <!-- ============================================================
@@ -818,144 +842,10 @@
   </div>
 
   <!-- ============================================================
-       PRODUCT GRID
-       href="..." を各商品のZOZO個別URLに差し替えてください
-       画像は images/item01.jpg〜item12.jpg を配置してください
+       PRODUCT GRID — products.js から自動生成
        ============================================================ -->
-  <main class="product-grid">
-
-    <!-- 01 Cropped Vest — href を ZOZO個別URLに差し替え -->
-    <a class="product-item" href="https://zozo.jp/brand/benua/" target="_blank" rel="noopener">
-      <div class="product-image-wrap">
-        <img src="images/item01.jpg" alt="Cropped Vest">
-      </div>
-      <div class="product-info">
-        <p class="product-name">Cropped Vest</p>
-        <p class="product-price">¥12,900</p>
-      </div>
-    </a>
-
-    <!-- 02 Pinstripe Vest -->
-    <a class="product-item" href="https://zozo.jp/brand/benua/" target="_blank" rel="noopener">
-      <div class="product-image-wrap">
-        <img src="images/item02.jpg" alt="Pinstripe Vest">
-      </div>
-      <div class="product-info">
-        <p class="product-name">Pinstripe Vest</p>
-        <p class="product-price">¥14,900</p>
-      </div>
-    </a>
-
-    <!-- 03 Wide Easy Pants -->
-    <a class="product-item" href="https://zozo.jp/brand/benua/" target="_blank" rel="noopener">
-      <div class="product-image-wrap">
-        <img src="images/item03.jpg" alt="Wide Easy Pants">
-      </div>
-      <div class="product-info">
-        <p class="product-name">Wide Easy Pants</p>
-        <p class="product-price">¥16,900</p>
-      </div>
-    </a>
-
-    <!-- 04 Check Wide Pants -->
-    <a class="product-item" href="https://zozo.jp/brand/benua/" target="_blank" rel="noopener">
-      <div class="product-image-wrap">
-        <img src="images/item04.jpg" alt="Check Wide Pants">
-      </div>
-      <div class="product-info">
-        <p class="product-name">Check Wide Pants</p>
-        <p class="product-price">¥18,900</p>
-      </div>
-    </a>
-
-    <!-- 05 Baseball Shirt -->
-    <a class="product-item" href="https://zozo.jp/brand/benua/" target="_blank" rel="noopener">
-      <div class="product-image-wrap">
-        <img src="images/item05.jpg" alt="Baseball Shirt">
-      </div>
-      <div class="product-info">
-        <p class="product-name">Baseball Shirt</p>
-        <p class="product-price">¥13,900</p>
-      </div>
-    </a>
-
-    <!-- 06 Logo Cap -->
-    <a class="product-item" href="https://zozo.jp/brand/benua/" target="_blank" rel="noopener">
-      <div class="product-image-wrap">
-        <img src="images/item06.jpg" alt="Logo Cap">
-      </div>
-      <div class="product-info">
-        <p class="product-name">Logo Cap</p>
-        <p class="product-price">¥8,900</p>
-      </div>
-    </a>
-
-    <!-- 07 Sunflower Styling -->
-    <a class="product-item" href="https://zozo.jp/brand/benua/" target="_blank" rel="noopener">
-      <div class="product-image-wrap">
-        <img src="images/item07.jpg" alt="Sunflower Styling">
-      </div>
-      <div class="product-info">
-        <p class="product-name">Sunflower Styling</p>
-        <p class="product-price">¥17,900</p>
-      </div>
-    </a>
-
-    <!-- 08 Striped Open Collar Shirt -->
-    <a class="product-item" href="https://zozo.jp/brand/benua/" target="_blank" rel="noopener">
-      <div class="product-image-wrap">
-        <img src="images/item08.jpg" alt="Striped Open Collar Shirt">
-      </div>
-      <div class="product-info">
-        <p class="product-name">Striped Open Collar Shirt</p>
-        <p class="product-price">¥11,900</p>
-      </div>
-    </a>
-
-    <!-- 09 Brown Crop Tank -->
-    <a class="product-item" href="https://zozo.jp/brand/benua/" target="_blank" rel="noopener">
-      <div class="product-image-wrap">
-        <img src="images/item09.jpg" alt="Brown Crop Tank">
-      </div>
-      <div class="product-info">
-        <p class="product-name">Brown Crop Tank</p>
-        <p class="product-price">¥9,900</p>
-      </div>
-    </a>
-
-    <!-- 10 Leopard Scarf -->
-    <a class="product-item" href="https://zozo.jp/brand/benua/" target="_blank" rel="noopener">
-      <div class="product-image-wrap">
-        <img src="images/item10.jpg" alt="Leopard Scarf">
-      </div>
-      <div class="product-info">
-        <p class="product-name">Leopard Scarf</p>
-        <p class="product-price">¥9,900</p>
-      </div>
-    </a>
-
-    <!-- 11 White Crop Tank -->
-    <a class="product-item" href="https://zozo.jp/brand/benua/" target="_blank" rel="noopener">
-      <div class="product-image-wrap">
-        <img src="images/item11.jpg" alt="White Crop Tank">
-      </div>
-      <div class="product-info">
-        <p class="product-name">White Crop Tank</p>
-        <p class="product-price">¥8,900</p>
-      </div>
-    </a>
-
-    <!-- 12 Picnic Styling -->
-    <a class="product-item" href="https://zozo.jp/brand/benua/" target="_blank" rel="noopener">
-      <div class="product-image-wrap">
-        <img src="images/item12.jpg" alt="Picnic Styling">
-      </div>
-      <div class="product-info">
-        <p class="product-name">Picnic Styling</p>
-        <p class="product-price">¥15,900</p>
-      </div>
-    </a>
-
+  <main class="product-grid" id="productGrid">
+    <!-- JS が products.js を読み込んで自動描画します -->
   </main>
 
   <!-- ============================================================
@@ -1049,16 +939,100 @@
     </div>
   </footer>
 
+  <!-- products.js を先に読み込む（PRODUCTS 配列を定義） -->
+  <script src="products.js"></script>
+
   <!-- ============================================================
        JAVASCRIPT
        ============================================================ -->
   <script>
-    /* ---------- Search Overlay ---------- */
+    /* ============================================================
+       商品グリッド描画
+       products.js の PRODUCTS 配列を読み込んでHTMLを生成する
+       ============================================================ */
+
+    const ZOZO_BRAND = 'https://zozo.jp/brand/benua/';
+
+    function formatPrice(n) {
+      return '¥' + n.toLocaleString('ja-JP');
+    }
+
+    function renderProducts(list) {
+      const grid = document.getElementById('productGrid');
+      const countEl = document.getElementById('productCount');
+
+      if (!list.length) {
+        grid.innerHTML = '<p style="padding:40px 28px;font-size:10px;letter-spacing:.15em;">NO ITEMS FOUND.</p>';
+        if (countEl) countEl.textContent = '0 Items';
+        return;
+      }
+
+      grid.innerHTML = list.map(p => `
+        <a class="product-item${p.sold_out ? ' is-sold-out' : ''}"
+           href="${p.zozo_url || ZOZO_BRAND}"
+           target="_blank"
+           rel="noopener"
+           aria-label="${p.name} ${formatPrice(p.price)}">
+          <div class="product-image-wrap">
+            <img src="${p.image}" alt="${p.name}" loading="lazy">
+            ${p.sold_out ? '<span class="sold-out-badge">SOLD OUT</span>' : ''}
+          </div>
+          <div class="product-info">
+            <p class="product-name">${p.name}</p>
+            <p class="product-price">${formatPrice(p.price)}</p>
+          </div>
+        </a>
+      `).join('');
+
+      if (countEl) countEl.textContent = list.length + ' Items';
+    }
+
+    /* ---------- カテゴリフィルター ---------- */
+    let currentFilter = 'all';
+
+    function filterProducts(category) {
+      currentFilter = category;
+      const filtered = category === 'all'
+        ? PRODUCTS
+        : PRODUCTS.filter(p => p.category === category);
+      renderProducts(filtered);
+      updateFilterUI(category);
+    }
+
+    function updateFilterUI(active) {
+      document.querySelectorAll('[data-filter]').forEach(btn => {
+        btn.classList.toggle('filter-active', btn.dataset.filter === active);
+      });
+    }
+
+    /* ---------- 初期描画 ---------- */
+    renderProducts(PRODUCTS);
+
+    /* ---------- カテゴリグリッド → フィルター ---------- */
+    const categoryMap = {
+      'Collections':    'all',
+      'Ready to Wear':  'all',
+      'Tops':           'tops',
+      'Pants':          'bottoms',
+      'Accessories':    'accessories',
+      'Styling':        'styling'
+    };
+
+    document.querySelectorAll('.category-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const name = item.querySelector('.category-name').textContent.trim();
+        const filter = categoryMap[name] || 'all';
+        filterProducts(filter);
+        document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    /* ============================================================
+       Search Overlay
+       ============================================================ */
     function openSearch() {
-      const overlay = document.getElementById('searchOverlay');
-      overlay.classList.add('is-open');
+      document.getElementById('searchOverlay').classList.add('is-open');
       document.body.style.overflow = 'hidden';
-      // フォーカスを遅延させてトランジション後に当てる
       setTimeout(() => document.getElementById('searchInput').focus(), 50);
     }
 
@@ -1067,7 +1041,20 @@
       document.body.style.overflow = '';
     }
 
-    /* ---------- Mobile Menu ---------- */
+    /* 検索：商品名で絞り込み */
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      if (!q) {
+        renderProducts(PRODUCTS);
+        return;
+      }
+      const matched = PRODUCTS.filter(p => p.name.toLowerCase().includes(q));
+      renderProducts(matched);
+    });
+
+    /* ============================================================
+       Mobile Menu
+       ============================================================ */
     function openMenu() {
       document.getElementById('mobileMenu').classList.add('is-open');
       document.getElementById('menuOverlay').classList.add('is-open');
@@ -1080,20 +1067,9 @@
       document.body.style.overflow = '';
     }
 
-    /* ---------- ESC キーで全オーバーレイを閉じる ---------- */
+    /* ESC で全オーバーレイを閉じる */
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeSearch();
-        closeMenu();
-      }
-    });
-
-    /* ---------- カテゴリクリック → ZOZOブランドページ ---------- */
-    document.querySelectorAll('.category-item').forEach((item) => {
-      item.style.cursor = 'pointer';
-      item.addEventListener('click', () => {
-        window.open('https://zozo.jp/brand/benua/', '_blank', 'noopener');
-      });
+      if (e.key === 'Escape') { closeSearch(); closeMenu(); }
     });
   </script>
 
