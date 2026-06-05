@@ -11,6 +11,7 @@
   "dependencies": {
     "microcms-js-sdk": "^3.1.2",
     "next": "^16.2.6",
+    "playwright": "^1.60.0",
     "react": "^18",
     "react-dom": "^18"
   },
