@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BENUA</title>
+  <style>
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+      letter-spacing: inherit;
+      color: inherit;
+      padding: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ============================================================
+       HEADER — sticky, 2段構成、全体を細黒罫線で仕切る
+       ============================================================ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #ffffff;
+      border-bottom: 1px solid #000;
+    }
+
+    /* 上段：ロゴ / SEARCH / アクション */
+    .header-top {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 0 28px;
+      height: 50px;
+      border-bottom: 1px solid #000;
+    }
+
+    .header-logo {
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+
+    .header-search {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border-bottom: 1px solid #000;
+      padding-bottom: 2px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .header-search:hover {
+      opacity: 0.5;
+    }
+
+    .header-actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .header-actions a,
+    .header-actions button {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+
+    .header-actions a:hover,
+    .header-actions button:hover {
+      opacity: 0.5;
+    }
+
+    /* 下段：ナビゲーション */
+    .header-nav {
+      display: flex;
+      align-items: stretch;
+      height: 38px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .header-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .header-nav a,
+    .header-nav button {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      padding: 0 22px;
+      border-right: 1px solid #000;
+      white-space: nowrap;
+      transition: background-color 0.15s;
+      flex-shrink: 0;
+    }
+
+    .header-nav a:first-child {
+      padding-left: 28px;
+    }
+
+    .header-nav a:hover,
+    .header-nav button:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* FILTER は右端に寄せる */
+    .header-nav .nav-filter {
+      margin-left: auto;
+      border-right: none;
+      border-left: 1px solid #000;
+      padding-right: 28px;
+    }
+
+    /* ============================================================
+       HERO / MAIN VISUAL — 余白多め、無機質
+       ============================================================ */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 96px 28px 72px;
+      border-bottom: 1px solid #000;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-season {
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 32px;
+    }
+
+    /* 大きなブランド名 */
+    .hero-title {
+      font-size: clamp(64px, 13vw, 160px);
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+
+    .hero-divider {
+      width: 1px;
+      height: 40px;
+      background: #000;
+      margin: 28px auto;
+    }
+
+    .hero-subtitle {
+      font-size: 9px;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+    }
+
+    /* 右下のシーズンラベル */
+    .hero-label {
+      position: absolute;
+      bottom: 20px;
+      right: 28px;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: #aaa;
+      text-transform: uppercase;
+    }
+
+    /* ============================================================
+       セクションラベル行 — 商品グリッド上部
+       ============================================================ */
+    .section-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      height: 38px;
+      border-bottom: 1px solid #000;
+    }
+
+    .section-bar-label {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+
+    .section-bar-count {
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      color: #999;
+    }
+
+    /* ============================================================
+       PRODUCT GRID — 4カラム、罫線グリッド
+       ============================================================ */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-left: 1px solid #000;
+    }
+
+    /* 個別商品カード */
+    .product-item {
+      border-right: 1px solid #000;
+      border-bottom: 1px solid #000;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 商品画像ラッパー — 縦長3:4比率 */
+    .product-image-wrap {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      position: relative;
+      background-color: #e4e4e4;
+    }
+
+    /* プレースホルダー表示 — 画像がない場合の斜線パターン */
+    .product-image-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 10px,
+          rgba(0,0,0,0.04) 10px,
+          rgba(0,0,0,0.04) 11px
+        );
+      z-index: 0;
+    }
+
+    .product-image-wrap img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      /* hover時：スムーズな拡大 */
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  filter 0.3s ease;
+    }
+
+    /* hover: ズームイン */
+    .product-item:hover .product-image-wrap img {
+      transform: scale(1.05);
+    }
+
+    /* 商品情報エリア */
+    .product-info {
+      padding: 10px 14px 14px;
+      border-top: 1px solid #000;
+      flex: 1;
+    }
+
+    .product-name {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+
+    .product-price {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: #666;
+    }
+
+    /* ============================================================
+       CATEGORY GRID — 下部カテゴリナビ、3カラム
+       ============================================================ */
+    .category-section {
+      border-top: 1px solid #000;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-left: 1px solid #000;
+    }
+
+    .category-item {
+      border-right: 1px solid #000;
+      border-bottom: 1px solid #000;
+      padding: 40px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 140px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      position: relative;
+    }
+
+    .category-item:hover {
+      background-color: #f8f8f8;
+    }
+
+    /* カテゴリ番号（装飾） */
+    .category-num {
+      position: absolute;
+      top: 16px;
+      left: 28px;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      color: #ccc;
+    }
+
+    .category-name {
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    .category-arrow {
+      margin-top: 14px;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .category-item:hover .category-arrow {
+      transform: translateX(4px);
+    }
+
+    /* ============================================================
+       FOOTER — 3カラムリンクグリッド
+       ============================================================ */
+    .site-footer {
+      border-top: 1px solid #000;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-left: 1px solid #000;
+    }
+
+    .footer-col {
+      border-right: 1px solid #000;
+      border-bottom: 1px solid #000;
+      padding: 32px 28px;
+    }
+
+    .footer-col-title {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: #888;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: #000;
+    }
+
+    /* コピーライト行 */
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 28px;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: #aaa;
+      border-top: none;
+    }
+
+    /* ============================================================
+       SEARCH OVERLAY — 全画面検索
+       ============================================================ */
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      background: #ffffff;
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .search-overlay.is-open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .search-overlay-inner {
+      width: 60%;
+      max-width: 480px;
+      text-align: center;
+    }
+
+    .search-overlay input[type="text"] {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: none;
+      border-bottom: 1px solid #000;
+      outline: none;
+      padding: 10px 0;
+      width: 100%;
+      text-align: center;
+      background: transparent;
+    }
+
+    .search-overlay input[type="text"]::placeholder {
+      color: #ccc;
+    }
+
+    .search-hint {
+      margin-top: 16px;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: #aaa;
+      text-transform: uppercase;
+    }
+
+    .search-close-btn {
+      position: absolute;
+      top: 22px;
+      right: 28px;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-bottom: 1px solid #000;
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+
+    .search-close-btn:hover {
+      opacity: 0.5;
+    }
+
+    /* ============================================================
+       MOBILE MENU — 右スライドイン
+       ============================================================ */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.25);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .menu-overlay.is-open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 100%;
+      background: #fff;
+      border-left: 1px solid #000;
+      z-index: 250;
+      padding: 60px 28px 28px;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+    }
+
+    .mobile-menu.is-open {
+      transform: translateX(0);
+    }
+
+    .mobile-menu-close {
+      position: absolute;
+      top: 18px;
+      right: 28px;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-bottom: 1px solid #000;
+      padding-bottom: 2px;
+    }
+
+    .mobile-menu ul li {
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .mobile-menu ul li a {
+      display: block;
+      padding: 14px 0;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: opacity 0.15s;
+    }
+
+    .mobile-menu ul li a:hover {
+      opacity: 0.5;
+    }
+
+    /* ============================================================
+       RESPONSIVE — TABLET (≤1024px)
+       ============================================================ */
+    @media (max-width: 1024px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* ============================================================
+       RESPONSIVE — MOBILE (≤768px)
+       ============================================================ */
+    @media (max-width: 768px) {
+      /* ヘッダー */
+      .header-top {
+        padding: 0 16px;
+        height: 46px;
+      }
+
+      .header-logo {
+        font-size: 13px;
+        letter-spacing: 0.25em;
+      }
+
+      .header-actions .hide-sp {
+        display: none;
+      }
+
+      .header-actions {
+        gap: 16px;
+      }
+
+      .header-nav a:first-child {
+        padding-left: 16px;
+      }
+
+      .header-nav .nav-filter {
+        padding-right: 16px;
+      }
+
+      /* ヒーロー */
+      .hero {
+        padding: 64px 16px 56px;
+      }
+
+      .hero-label {
+        right: 16px;
+      }
+
+      /* セクションバー */
+      .section-bar {
+        padding: 0 16px;
+      }
+
+      /* 商品グリッド */
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .product-info {
+        padding: 8px 10px 12px;
+      }
+
+      /* カテゴリグリッド */
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .category-item {
+        padding: 28px 16px 20px;
+        min-height: 110px;
+      }
+
+      .category-num {
+        left: 16px;
+      }
+
+      /* フッター */
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-col {
+        padding: 24px 16px;
+      }
+
+      .footer-bottom {
+        padding: 14px 16px;
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+      }
+
+      /* 検索 */
+      .search-overlay-inner {
+        width: 85%;
+      }
+    }
+
+    /* ============================================================
+       RESPONSIVE — SMALL (≤480px)
+       ============================================================ */
+    @media (max-width: 480px) {
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mobile-menu {
+        width: 100%;
+        border-left: none;
+      }
+
+      .search-overlay input[type="text"] {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       SEARCH OVERLAY
+       ============================================================ -->
+  <div class="search-overlay" id="searchOverlay" role="dialog" aria-label="Search">
+    <button class="search-close-btn" onclick="closeSearch()">CLOSE ×</button>
+    <div class="search-overlay-inner">
+      <input type="text" id="searchInput" placeholder="SEARCH...">
+      <p class="search-hint">PRESS ESC TO CLOSE</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MOBILE MENU OVERLAY & PANEL
+       ============================================================ -->
+  <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Navigation">
+    <button class="mobile-menu-close" onclick="closeMenu()">CLOSE ×</button>
+    <ul>
+      <li><a href="#">WOMEN</a></li>
+      <li><a href="#">NEW ARRIVALS</a></li>
+      <li><a href="#">COLLECTIONS</a></li>
+      <li><a href="#">READY TO WEAR</a></li>
+      <li><a href="#">TOPS</a></li>
+      <li><a href="#">PANTS</a></li>
+      <li><a href="#">ACCESSORIES</a></li>
+      <li><a href="#">STYLING</a></li>
+      <li><a href="#">STORE LOCATOR</a></li>
+      <li><a href="#">CONTACT</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <!-- 上段 -->
+    <div class="header-top">
+      <a href="#" class="header-logo">Benua</a>
+      <button class="header-search" onclick="openSearch()">Search</button>
+      <div class="header-actions">
+        <a href="#" class="hide-sp">Log In</a>
+        <a href="#">Bag</a>
+        <button onclick="openMenu()">Menu</button>
+      </div>
+    </div>
+    <!-- 下段ナビ -->
+    <nav class="header-nav">
+      <a href="#">Women</a>
+      <a href="#">New Arrivals</a>
+      <button class="nav-filter">Filter</button>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       HERO / MAIN VISUAL
+       ============================================================ -->
+  <section class="hero">
+    <p class="hero-season">2025 SS Collection</p>
+    <h1 class="hero-title">Benua</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-subtitle">New Arrivals</p>
+    <span class="hero-label">No. 001 — 012</span>
+  </section>
+
+  <!-- ============================================================
+       SECTION BAR
+       ============================================================ -->
+  <div class="section-bar">
+    <span class="section-bar-label">All Products</span>
+    <span class="section-bar-count">12 Items</span>
+  </div>
+
+  <!-- ============================================================
+       PRODUCT GRID
+       各 <img src="images/itemXX.jpg"> は差し替え用プレースホルダー
+       ============================================================ -->
+  <main class="product-grid">
+
+    <article class="product-item">
+      <div class="product-image-wrap">
+        <img src="images/item01.jpg" alt="Cropped Vest">
+      </div>
+      <div class="product-info">
+        <p class="product-name">Cropped Vest</p>
+        <p class="product-price">¥12,900</p>
+      </div>
+    </article>
+
+    <article class="product-item">
+      <div class="product-image-wrap">
+        <img src="images/item02.jpg" alt="Pinstripe Vest">
+      </div>
+      <div class="product-info">
+        <p class="product-name">Pinstripe Vest</p>
+        <p class="product-price">¥14,900</p>
+      </div>
+    </article>
+
+    <article class="product-item">
+      <div class="product-image-wrap">
+        <img src="images/item03.jpg" alt="Wide Easy Pants">
+      </div>
+      <div class="product-info">
+        <p class="product-name">Wide Easy Pants</p>
+        <p class="product-price">¥16,900</p>
+      </div>
+    </article>
+
+    <article class="product-item">
+      <div class="product-image-wrap">
+        <img src="images/item04.jpg" alt="Check Wide Pants">
+      </div>
+      <div class="product-info">
+        <p class="product-name">Check Wide Pants</p>
+        <p class="product-price">¥18,900</p>
+      </div>
+    </article>
+
+    <article class="product-item">
+      <div class="product-image-wrap">
+        <img src="images/item05.jpg" alt="Baseball Shirt">
+      </div>
+      <div class="product-info">
+        <p class="product-name">Baseball Shirt</p>
+        <p class="product-price">¥13,900</p>
+      </div>
+    </article>
+
+    <article class="product-item">
+      <div class="product-image-wrap">
+        <img src="images/item06.jpg" alt="Logo Cap">
+      </div>
+      <div class="product-info">
+        <p class="product-name">Logo Cap</p>
+        <p class="product-price">¥8,900</p>
+      </div>
+    </article>
+
+    <article class="product-item">
+      <div class="product-image-wrap">
+        <img src="images/item07.jpg" alt="Sunflower Styling">
+      </div>
+      <div class="product-info">
+        <p class="product-name">Sunflower Styling</p>
+        <p class="product-price">¥17,900</p>
+      </div>
+    </article>
+
+    <article class="product-item">
+      <div class="product-image-wrap">
+        <img src="images/item08.jpg" alt="Striped Open Collar Shirt">
+      </div>
+      <div class="product-info">
+        <p class="product-name">Striped Open Collar Shirt</p>
+        <p class="product-price">¥11,900</p>
+      </div>
+    </article>
+
+    <article class="product-item">
+      <div class="product-image-wrap">
+        <img src="images/item09.jpg" alt="Brown Crop Tank">
+      </div>
+      <div class="product-info">
+        <p class="product-name">Brown Crop Tank</p>
+        <p class="product-price">¥9,900</p>
+      </div>
+    </article>
+
+    <article class="product-item">
+      <div class="product-image-wrap">
+        <img src="images/item10.jpg" alt="Leopard Scarf">
+      </div>
+      <div class="product-info">
+        <p class="product-name">Leopard Scarf</p>
+        <p class="product-price">¥9,900</p>
+      </div>
+    </article>
+
+    <article class="product-item">
+      <div class="product-image-wrap">
+        <img src="images/item11.jpg" alt="White Crop Tank">
+      </div>
+      <div class="product-info">
+        <p class="product-name">White Crop Tank</p>
+        <p class="product-price">¥8,900</p>
+      </div>
+    </article>
+
+    <article class="product-item">
+      <div class="product-image-wrap">
+        <img src="images/item12.jpg" alt="Picnic Styling">
+      </div>
+      <div class="product-info">
+        <p class="product-name">Picnic Styling</p>
+        <p class="product-price">¥15,900</p>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- ============================================================
+       CATEGORY GRID
+       ============================================================ -->
+  <section class="category-section">
+    <div class="section-bar">
+      <span class="section-bar-label">Browse by Category</span>
+    </div>
+    <div class="category-grid">
+
+      <div class="category-item">
+        <span class="category-num">01</span>
+        <p class="category-name">Collections</p>
+        <span class="category-arrow">→</span>
+      </div>
+
+      <div class="category-item">
+        <span class="category-num">02</span>
+        <p class="category-name">Ready to Wear</p>
+        <span class="category-arrow">→</span>
+      </div>
+
+      <div class="category-item">
+        <span class="category-num">03</span>
+        <p class="category-name">Tops</p>
+        <span class="category-arrow">→</span>
+      </div>
+
+      <div class="category-item">
+        <span class="category-num">04</span>
+        <p class="category-name">Pants</p>
+        <span class="category-arrow">→</span>
+      </div>
+
+      <div class="category-item">
+        <span class="category-num">05</span>
+        <p class="category-name">Accessories</p>
+        <span class="category-arrow">→</span>
+      </div>
+
+      <div class="category-item">
+        <span class="category-num">06</span>
+        <p class="category-name">Styling</p>
+        <span class="category-arrow">→</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+
+      <div class="footer-col">
+        <p class="footer-col-title">Store</p>
+        <ul>
+          <li><a href="#">Store Locator</a></li>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col-title">The Company</p>
+        <ul>
+          <li><a href="#">About Benua</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Customer Service</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col-title">Connect</p>
+        <ul>
+          <li><a href="#">Newsletter</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter / X</a></li>
+          <li><a href="#">TikTok</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Benua. All Rights Reserved.</span>
+      <span>Privacy Policy &nbsp;/&nbsp; Terms of Use</span>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+  <script>
+    /* ---------- Search Overlay ---------- */
+    function openSearch() {
+      const overlay = document.getElementById('searchOverlay');
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      // フォーカスを遅延させてトランジション後に当てる
+      setTimeout(() => document.getElementById('searchInput').focus(), 50);
+    }
+
+    function closeSearch() {
+      document.getElementById('searchOverlay').classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    /* ---------- Mobile Menu ---------- */
+    function openMenu() {
+      document.getElementById('mobileMenu').classList.add('is-open');
+      document.getElementById('menuOverlay').classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('is-open');
+      document.getElementById('menuOverlay').classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    /* ---------- ESC キーで全オーバーレイを閉じる ---------- */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSearch();
+        closeMenu();
+      }
+    });
+
+    /* ---------- 商品クリック（拡張用スタブ） ---------- */
+    document.querySelectorAll('.product-item').forEach((item) => {
+      item.addEventListener('click', () => {
+        // ここに商品詳細モーダルや遷移を実装
+      });
+    });
+
+    /* ---------- カテゴリクリック（拡張用スタブ） ---------- */
+    document.querySelectorAll('.category-item').forEach((item) => {
+      item.addEventListener('click', () => {
+        // ここにカテゴリフィルタリングを実装
+      });
+    });
+  </script>
+
+</body>
+</html>
