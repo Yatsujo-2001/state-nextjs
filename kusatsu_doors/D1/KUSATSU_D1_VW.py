@@ -24,6 +24,7 @@
 import vs
 import math
 
+DRAWING_NO = 'D1'
 LAYERS = [('00_\u56f3\u67a0\u30fb\u8868\u984c_1-1', 1), ('01_\u5e73\u9762\u8a73\u7d30\u56f3_1-5', 5), ('02_KITCHEN\u5074\u6b63\u9762\u56f3_1-15', 15), ('03_TOILET\u5074\u6b63\u9762\u56f3_1-15', 15), ('04_\u65ad\u9762\u8a73\u7d30\u56f3_1-15', 15), ('05_\u4e0a\u90e8\u8a73\u7d30\u56f3_1-5', 5), ('06_\u4e0b\u90e8\u8a73\u7d30\u56f3_1-5', 5)]
 CLASSES = ['D1-\u56f3\u540d', 'D1-\u56f3\u67a0', 'D1-\u5916\u5f62\u7dda', 'D1-\u5bf8\u6cd5', 'D1-\u6587\u5b57', 'D1-\u6728\u76ee', 'D1-\u6ce8\u8a18', 'D1-\u7d30\u7dda', 'D1-\u91d1\u7269', 'D1-\u30cf\u30c3\u30c1']
 HATCH = {'wood': (45, 0.9, None, 2), 'base': (45, 1.6, '#9A9A9A', 2), 'nuki': (-45, 1.4, '#9A9A9A', 2), 'tile': (45, 0.7, '#9A9A9A', 2)}
@@ -1006,7 +1007,7 @@ def _draw(it, li, f, ox, oy, S):
         pts = [((flat[k] + ox) * f, (flat[k + 1] + oy) * f) for k in range(0, len(flat), 2)]
         if hatch:
             ang, sp, hcol, hmil = HATCH[hatch]
-            vs.NameClass('D1-\u30cf\u30c3\u30c1')
+            vs.NameClass(CLASSES[-1])
             _group(_hatch_segments(pts, ang, sp * S * f), hcol, hmil)
             vs.NameClass(CLASSES[ci])
         if dash and mil > 0:
@@ -1089,7 +1090,7 @@ def main():
         _main()
     except Exception:
         import traceback
-        vs.AlrtDialog('D1 \u4f5c\u56f3\u30b9\u30af\u30ea\u30d7\u30c8\u3067\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f\u3002\n' + traceback.format_exc()[-900:])
+        vs.AlrtDialog(DRAWING_NO + ' \u4f5c\u56f3\u30b9\u30af\u30ea\u30d7\u30c8\u3067\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f\u3002\n' + traceback.format_exc()[-900:])
 
 
 def _main():
@@ -1134,7 +1135,7 @@ def _main():
         vs.ReDrawAll()
     except Exception:
         pass
-    msg = 'D1 \u5efa\u5177\u88fd\u4f5c\u56f3\u3092\u4f5c\u6210\u3057\u307e\u3057\u305f\u3002\n\u4f5c\u6210 %d / \u5931\u6557 %d\n\u5358\u4f4d: %s\n' % (done, fail, unit_name)
+    msg = DRAWING_NO + ' \u5efa\u5177\u88fd\u4f5c\u56f3\u3092\u4f5c\u6210\u3057\u307e\u3057\u305f\u3002\n\u4f5c\u6210 %d / \u5931\u6557 %d\n\u5358\u4f4d: %s\n' % (done, fail, unit_name)
     if pw:
         msg += '\u7528\u7d19: %.0f \u00d7 %.0f mm' % (pw, ph)
         if not (abs(pw - 420) < 3 and abs(ph - 297) < 3):
