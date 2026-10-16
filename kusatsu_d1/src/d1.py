@@ -10,6 +10,7 @@ Real-coordinate conventions
 """
 import sys
 from engine import *
+import engine as _E
 
 # ------------------------------------------------------------------ key values
 OPEN_K = 686        # KITCHEN面 開口W (吊元枠面〜戸先欠込み底)       site
@@ -50,6 +51,7 @@ rect(10, 10, 410, 287, w=W_MED, layer='図枠')
 
 
 # ================================================================== PLAN 1/5
+_E.VIEW = 'plan'
 PX0, PY0 = 211.0, 66.0
 
 
@@ -236,6 +238,7 @@ def grain(fn, x0, x1, z0, z1, n=9, seed=3):
 
 
 # ---------------- KITCHEN side elevation (吊元 = 右)
+_E.VIEW = 'kitchen'
 fl_l, fl_r = 16.0, 112.0
 line((fl_l, FLY), (fl_r, FLY), w=W_MED, layer='外形線')
 text((fl_l, FLY - 0.8), '▽FL±0', size=DIMT)
@@ -273,6 +276,7 @@ vdim([KE(0, z)[1] for z in (0, Z_CEIL)], xe - 16, [None, None], ['天井高 2398
 title_box(KE(OPEN_K / 2, 0)[0], 268.0, 'KITCHEN側 正面図　S=1/15')
 
 # ---------------- TOILET side elevation (吊元 = 左)
+_E.VIEW = 'toilet'
 fl_l, fl_r = 138.0, 222.0
 line((fl_l, FLY), (fl_r, FLY), w=W_MED, layer='外形線')
 text((fl_l, FLY - 0.8), '▽FL±0', size=DIMT)
@@ -301,6 +305,7 @@ title_box(TE(INNER_W / 2 - 12, 0)[0], 268.0, 'TOILET側 正面図　S=1/15')
 
 
 # ================================================================== SECTION 1/15
+_E.VIEW = 'section'
 SX0 = 272.0
 
 
@@ -354,6 +359,7 @@ title_box(SX0 + 5, 268.0, '断面詳細図　S=1/15')
 
 
 # ================================================================== DETAILS 1/5
+_E.VIEW = 'head'
 HX0, HY0 = 352.0, 128.0   # head: Y=0 -> x, Z=2370 -> y
 
 
@@ -412,6 +418,7 @@ text((HX0 + 34.4, HY0 - 7.6), '※高さ要確認', size=1.5, c=RED, anchor='sta
 title_box(HX0 + 2, HY0 + 13.0, 'A：上部詳細　S=1/5')
 
 # ---- foot detail
+_E.VIEW = 'foot'
 FX0, FY0 = 352.0, 192.0
 
 
@@ -444,6 +451,7 @@ title_box(FX0 + 2, FY0 + 13.0, 'B：下部詳細　S=1/5')
 
 
 # ================================================================== SPEC TABLE (right top)
+_E.VIEW = 'sheet'
 TX, TY = 300.0, 12.0
 cw = [12, 26, 44, 26]   # 記号 | 室名 | 名称 | 数量   (sum 108)
 xs = [TX]

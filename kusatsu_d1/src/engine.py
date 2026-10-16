@@ -11,9 +11,11 @@ DASH_SWING = (1.6, 0.8)
 FONT = "'IPAGothic','IPAゴシック','MS Gothic','ＭＳ ゴシック',sans-serif"
 
 ITEMS = []
+VIEW = 'sheet'   # current view tag (sheet / plan / kitchen / toilet / section / head / foot)
 
 
 def add(**kw):
+    kw['view'] = VIEW
     ITEMS.append(kw)
 
 
