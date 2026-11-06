@@ -1,0 +1,13 @@
+{
+  "name": "reset-presentation-tools",
+  "private": true,
+  "description": "Build tools for the RESET design presentation (PowerPoint export)",
+  "scripts": {
+    "pptx": "node build_pptx.cjs"
+  },
+  "dependencies": {
+    "image-size": "1.1.1",
+    "jszip": "3.10.1",
+    "pptxgenjs": "3.12.0"
+  }
+}

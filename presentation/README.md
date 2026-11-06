@@ -8,6 +8,7 @@ RESETの新しい展示コンセプトを、社内デザイナーチームと議
 | ファイル | 内容 |
 |---|---|
 | `RESET_Design_Presentation.pdf` | PDF版（10ページ、1920×1080） |
+| `RESET_Design_Presentation.pptx` | PowerPoint版（16:9、編集可能。発表者ノート付き） |
 | `index.html` | ブラウザで見るプレゼンテーション（スライド本体と発表者ノートの元データ） |
 | `speaker-notes.md` | 日本語の発表者ノート（`index.html` から自動生成） |
 | `css/deck.css` | デザイン（グリッド、色、書体、各スライドのレイアウト） |
@@ -15,6 +16,7 @@ RESETの新しい展示コンセプトを、社内デザイナーチームと議
 | `images/` | スライド用に加工した写真（モノクロ・粒子・ハーフトーン） |
 | `tools/process_images.py` | `../assets/` の元写真から `images/` を作るスクリプト |
 | `tools/build.cjs` | PDF と発表者ノートを書き出すスクリプト |
+| `tools/build_pptx.cjs` | PowerPoint 版を書き出すスクリプト |
 
 ## 見かた・操作
 
@@ -53,6 +55,28 @@ node presentation/tools/build.cjs
 - 2つ目で PDF と `speaker-notes.md` を書き出します（Playwright と Chromium が必要）。`--shots <フォルダ>` を付けると各スライドの PNG も保存します。
 - 日本語書体の Noto Sans JP は Google Fonts から読み込むため、書き出しにはネット接続が必要です。
 - 欧文は Helvetica Neue → Helvetica → Arial の順で使います。macOS 以外で書き出すときは、Helvetica 互換の Nimbus Sans（Debian / Ubuntu では `fonts-urw-base35` パッケージ）を入れておくと、PDF の欧文が Helvetica と同じ字形になります。入っていなければ Arial 互換の Liberation Sans になります。
+
+## PowerPoint 版
+
+`RESET_Design_Presentation.pptx` は、HTML 版の各スライドをブラウザで描画し、文字・写真・罫線の位置と書式を測って、PowerPoint の図形として組み直したものです。画像を貼っただけのスライドではないので、文字も写真もそのまま編集できます。
+
+- 書体：欧文は Arial、和文は Noto Sans JP（テーマの「東アジア言語用フォント」に設定）。発表に使うパソコンには [Noto Sans JP](https://fonts.google.com/noto/specimen/Noto+Sans+JP) を入れてください。入っていないと PowerPoint が別の和文フォントに置き換えます。
+- 色：オフホワイト・黒・グレー・赤をテーマの配色に登録しています。［デザイン］→［バリエーション］→［配色］から一括で変更できます。
+- 各スライドの見出しはタイトルのプレースホルダーです（アウトライン表示やアクセシビリティチェックで見出しとして扱われます）。
+- 発表者ノートは各スライドのノート欄に入っています。
+- 写真はトリミングで配置しているので、［図の形式］→［トリミング］で見せる範囲を変えられます。
+
+書き出し（リポジトリのルートで実行）：
+
+```bash
+npm install --prefix presentation/tools
+```
+
+```bash
+node presentation/tools/build_pptx.cjs
+```
+
+PowerPoint 上で直した内容は HTML 版には戻りません。両方を使う場合は、`index.html` を直してから書き出し直してください。
 
 ## 写真について
 

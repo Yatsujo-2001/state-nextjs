@@ -369,6 +369,7 @@ em { font-style: normal; }
 }
 .s09 .ideas li:last-child { border-bottom: 1px solid var(--rule); }
 .s09 .ideas li span { color: var(--grey); font-size: 20px; padding-top: 3px; }
+.s09 .ideas li b { font-weight: inherit; }
 .s09 .flow { font-size: 30px; line-height: 1.5; font-weight: 500; font-feature-settings: "palt" 1; white-space: nowrap; }
 .s09 .flow i { font-style: normal; color: var(--grey); margin: 0 10px; font-weight: 400; }
 
