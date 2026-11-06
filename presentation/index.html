@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>製作者の視点 — RESET Design Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="css/deck.css">
+</head>
+<body>
+
+<main class="stage" id="stage">
+
+<!-- ============================================================
+     01 — INTRODUCTION
+     ============================================================ -->
+<section class="slide dark s01" data-title="INTRODUCTION" aria-label="01 Introduction">
+  <header class="meta">
+    <span>RESET</span>
+    <span>EXHIBITION CONCEPT</span>
+    <span>INTERNAL DESIGN REVIEW</span>
+    <span class="pg">01 / 10</span>
+  </header>
+
+  <h1 class="b h" style="--x:1;--w:12;top:150px;font-size:330px;line-height:0.98;letter-spacing:-0.02em">製作者の<br>視点</h1>
+
+  <div class="b" style="--x:6;--w:4;top:540px">
+    <p class="lbl red">仮題 — Working title</p>
+    <p class="cap" style="margin-top:6px">タイトルは未確定。今日の議論の対象です。</p>
+  </div>
+
+  <p class="b h" style="--x:1;--w:7;top:866px;font-size:54px;line-height:1.3;font-weight:400">素材の偶然性から考える、<br>新たな展示コンセプト</p>
+
+  <div class="b" style="--x:10;--w:3;top:812px">
+    <p class="lbl" style="color:var(--grey)">Title candidates — タイトル候補</p>
+    <ol class="cands">
+      <li><span>01</span><b>製作者の視点<em class="red">　← 仮</em></b></li>
+      <li><span>02</span><b>製作者による偶然性の意匠</b></li>
+      <li><span>03</span><b>素材の偶然性</b></li>
+      <li><span>04</span><b>偶然性の和</b></li>
+      <li><span>05</span><b>製作者と紐解く素材の造形</b></li>
+    </ol>
+  </div>
+
+  <i class="tick" style="left:0;top:540px"></i>
+  <i class="tick" style="right:0;top:540px"></i>
+
+  <aside class="notes">
+    <p>今日は、RESETの次の展示コンセプトについて、デザイナーチームの皆さんと一緒に考える時間です。完成した企画を発表する場ではなく、ここまでの観察と思考の過程を共有し、そこから形を探っていくための資料です。</p>
+    <p>表紙の「製作者の視点」は仮のタイトルです。右下にタイトル候補を5つ並べています。どの言葉が今回の考え方を最もよく表しているか、最後のディスカッションで意見をもらえると助かります。</p>
+    <p>サブタイトルの「素材の偶然性」が、今日の話のキーワードです。</p>
+    <p>→ 次へ：まず、なぜ今回、木工場に立ち返るのかから話します。</p>
+  </aside>
+</section>
+
+<!-- ============================================================
+     02 — BACKGROUND
+     ============================================================ -->
+<section class="slide s02" data-title="BACKGROUND" aria-label="02 Background">
+  <header class="meta">
+    <span>RESET<br>製作者の視点（仮）</span>
+    <span>Exhibition Concept<br>Internal Design Review</span>
+    <span>02<br>Background</span>
+    <span class="pg">02 / 10</span>
+  </header>
+
+  <h2 class="b h" style="--x:1;--w:6;top:150px;font-size:104px">なぜ、木工場に<br>立ち返るのか。</h2>
+
+  <div class="b shift" style="--x:1;--w:6;top:440px">
+    <p class="lbl grey">出発点 — Origin</p>
+    <p class="shift-a">廃材を、再利用する。</p>
+    <p class="lbl">今回の焦点 — Focus</p>
+    <p class="shift-b">製作者は、加工の途中で<br>何を発見しているのか。</p>
+  </div>
+
+  <p class="b area" style="--x:1;--w:3;top:722px">200<small>㎡</small></p>
+  <p class="b h" style="--x:4;--w:3;top:764px;font-size:28px;line-height:1.45;font-weight:500">約200㎡の木工場を、<br>デザインの源泉として<br>捉え直す。</p>
+  <p class="b cap red" style="--x:1;--w:5;top:950px">※ 200㎡は木工場の規模です。展示会場の面積ではありません。</p>
+
+  <figure class="fig" style="left:972px;top:120px;right:0;bottom:0">
+    <img src="images/workshop-planing.jpg" alt="RESETの木工場で、電気鉋を使って大きな板を削る製作者。板の上に鉋屑が散らばっている。" style="object-position:52% 45%">
+  </figure>
+  <p class="b cap" style="--x:5;--w:2;bottom:60px;text-align:right">FIG. 01<br>RESET 木工場。<br>電気鉋で板を削る。<br>板の上に鉋屑が<br>溜まっていく。</p>
+
+  <aside class="notes">
+    <p>RESETは、木工場から日々出る端材や木屑といった廃棄物に、新しい価値を見つける活動から始まりました。</p>
+    <p>ただ、今回の展示で注目したいのは「廃材を再利用する」という行為だけではありません。毎日その素材に触れている製作者が、切ったり削ったりする途中で、何を見つけているのか。そこに焦点を移します。</p>
+    <p>写真はRESETの木工場です。電気鉋で板を削ると、板の上にはこうして鉋屑が溜まっていきます。普段は掃除して捨てているものですが、ここに発見の種があるのではないか、というのが今回の出発点です。</p>
+    <p>200㎡という数字は、木工場の規模です。展示会場の面積ではないので、そこは誤解のないようにお願いします。この約200㎡の工場を、デザインの源泉として捉え直したいと考えています。</p>
+    <p>→ 次へ：では、なぜ「製作者」の視点なのか。</p>
+  </aside>
+</section>
+
+<!-- ============================================================
+     03 — CONCEPT
+     ============================================================ -->
+<section class="slide s03" data-title="CONCEPT" aria-label="03 Concept">
+  <header class="meta">
+    <span>RESET<br>製作者の視点（仮）</span>
+    <span>Exhibition Concept<br>Internal Design Review</span>
+    <span>03<br>Concept</span>
+    <span class="pg">03 / 10</span>
+  </header>
+
+  <h2 class="b h" style="--x:1;--w:8;top:150px;font-size:112px">製作者だからこそ、<br>見えるもの。</h2>
+
+  <p class="b h" style="--x:9;--w:4;top:176px;font-size:30px;line-height:1.55;font-weight:500">デザイナーが受け取るのは、完成品。<br><span class="grey" style="font-weight:400">製作者は、その途中を毎日見ている。</span></p>
+
+  <div class="b timeline" style="--x:1;--w:12;top:470px">
+    <div class="range maker" style="grid-column:3 / 7">
+      <p class="lbl">製作者が立ち会う時間</p>
+      <p>素材を、完成品になる前から見ている。</p>
+    </div>
+    <div class="range seen" style="grid-column:7 / 8">
+      <p class="lbl">完成品</p>
+      <p>多くの人が目にする時点</p>
+    </div>
+    <ol class="steps">
+      <li>原木<small>LOG</small></li>
+      <li>製材<small>SAWN</small></li>
+      <li>切る<small>CUT</small></li>
+      <li>削る<small>PLANE</small></li>
+      <li>組む<small>JOIN</small></li>
+      <li>仕上げ<small>FINISH</small></li>
+      <li>完成品<small>PRODUCT</small></li>
+    </ol>
+  </div>
+
+  <div class="b kw" style="--x:1;--w:12;top:760px">
+    <div><p class="kw-n">01</p><p class="kw-en">MAKER</p><p class="kw-jp">製作者</p><p class="kw-d">毎日、木に触れている人。</p></div>
+    <div><p class="kw-n">02</p><p class="kw-en">MATERIAL</p><p class="kw-jp">素材</p><p class="kw-d">完成品になる前の木。</p></div>
+    <div><p class="kw-n">03</p><p class="kw-en">OBSERVATION</p><p class="kw-jp">観察</p><p class="kw-d">切る、削る、組む途中で見る。</p></div>
+    <div><p class="kw-n">04</p><p class="kw-en">ACCIDENT</p><p class="kw-jp">偶然</p><p class="kw-d">意図せず現れる形と表情。</p></div>
+  </div>
+
+  <aside class="notes">
+    <p>デザイナーや来場者が普段目にするのは、仕上がった家具、つまり完成品です。一方で製作者は、原木や製材の段階から、切る・削る・組むという途中の工程を毎日見ています。</p>
+    <p>図の赤い範囲が、製作者が日常的に立ち会っている時間です。この中に、完成品からは見えない素材の表情や、偶然現れる形があります。今回の展示が「製作者の視点」を軸にしているのは、この時間に立ち会えるのが製作者だからです。</p>
+    <p>下の4つの言葉、MAKER・MATERIAL・OBSERVATION・ACCIDENT が、コンセプトを支える軸です。製作者が、素材を観察し、そこで偶然と出会う。この関係で展示全体を考えています。</p>
+    <p class="q">問いかけ：皆さんが、完成品になる前の素材を見る機会はどれくらいありますか。</p>
+    <p>→ 次へ：では、その途中でどんな発見があるのか。</p>
+  </aside>
+</section>
+
+<!-- ============================================================
+     04 — PERSPECTIVE
+     ============================================================ -->
+<section class="slide s04" data-title="PERSPECTIVE" aria-label="04 Perspective">
+  <header class="meta">
+    <span>RESET<br>製作者の視点（仮）</span>
+    <span>04<br>Perspective</span>
+    <span class="pg">04 / 10</span>
+  </header>
+
+  <figure class="fig" style="left:0;top:0;width:1099px;height:990px">
+    <img src="images/planing-tall.jpg" alt="電気鉋で削った直後の板面。表面に鉋屑が重なって散らばっている。" style="object-position:50% 60%">
+  </figure>
+  <p class="b cap" style="--x:1;--w:7;top:1010px">FIG. 02 — 電気鉋で削った直後の板面。鉋屑が散らばり、重なっている。RESET 木工場。</p>
+
+  <h2 class="b h" style="--x:8;--w:5;top:150px;font-size:92px">意図しなかった<br>形が、<br>発想を生む。</h2>
+
+  <p class="b lbl red" style="--x:8;--w:5;top:512px">Read as — 読み替える</p>
+
+  <div class="b pair" style="--x:8;--w:5;top:548px">
+    <figure class="fig"><img src="images/shavings-close.jpg" alt="板の上に散らばった鉋屑のクローズアップ。"></figure>
+    <div>
+      <p class="pair-from">鉋屑の薄さ、重なり</p>
+      <p class="pair-to">→ 布のような素材？</p>
+    </div>
+  </div>
+
+  <div class="b pair" style="--x:8;--w:5;top:728px">
+    <figure class="fig"><img src="images/offcuts-endgrain.jpg" alt="仕口加工をした材の切断面。L字型の欠き込みが並んでいる。"></figure>
+    <div>
+      <p class="pair-from">切断面に現れた形</p>
+      <p class="pair-to">→ 自然界の何か？</p>
+    </div>
+  </div>
+
+  <p class="b h" style="--x:8;--w:5;top:930px;font-size:28px;line-height:1.5">製作過程で生まれた形や現象を、<br>普段とは異なる視点で読み替える。</p>
+
+  <aside class="notes">
+    <p>具体的に、どんな発見なのか。左の写真は、電気鉋で板を削った直後の様子です。表面に鉋屑が散らばり、重なっています。</p>
+    <p>例えば、鉋屑の薄さや重なりを見ていると、布のような素材を想像することがあります。また、木材を切断したときに現れた断面の形が、自然界に存在する何かに見えることもあります。</p>
+    <p>大事なのは「読み替える」という行為です。製作過程で生まれた形や現象を、普段とは違う視点で見直すと、別の素材や別の用途への発想が生まれます。</p>
+    <p class="q">問いかけ：右下の切断面、皆さんには何に見えますか。正解はないので、思いついたものを挙げてみてください。</p>
+    <p>→ 次へ：工場の中には、こうした偶然の造形がほかにもあります。</p>
+  </aside>
+</section>
+
+<!-- ============================================================
+     05 — DISCOVERY
+     ============================================================ -->
+<section class="slide s05" data-title="DISCOVERY" aria-label="05 Discovery">
+  <header class="meta">
+    <span>RESET<br>製作者の視点（仮）</span>
+    <span>Exhibition Concept<br>Internal Design Review</span>
+    <span>05<br>Discovery</span>
+    <span class="pg">05 / 10</span>
+  </header>
+
+  <h2 class="b h" style="--x:1;--w:8;top:150px;font-size:96px">日常の中にある、<br>偶然の造形。</h2>
+  <div class="b" style="--x:10;--w:3;top:176px">
+    <p class="lbl">Research archive</p>
+    <p class="h" style="font-size:24px;line-height:1.5;margin-top:8px;white-space:normal">工場で毎日生まれている<br>4つの現象を、<br>観察対象として記録する。</p>
+  </div>
+
+  <!-- 01 -->
+  <div class="b" style="--x:1;--w:3;top:430px">
+    <div class="spec-frame">
+      <div class="ph">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="0" x2="100" y2="100" vector-effect="non-scaling-stroke"/><line x1="100" y1="0" x2="0" y2="100" vector-effect="non-scaling-stroke"/></svg>
+        <p class="ph-t"><span class="lbl">Photo to come</span>撮影予定：節のある板の表面と断面</p>
+      </div>
+    </div>
+    <div class="spec-head"><p class="spec-n">01</p><p class="spec-en">WOOD KNOTS</p></div>
+    <p class="spec-jp">木の節</p>
+    <p class="spec-d">木の節が持つ、<br>不規則な形。</p>
+    <dl class="spec-rec"><dt>SOURCE</dt><dd>RESET 木工場</dd><dt>RECORD</dt><dd class="todo">写真 未撮影</dd></dl>
+  </div>
+
+  <!-- 02 -->
+  <div class="b" style="--x:4;--w:3;top:430px">
+    <div class="spec-frame">
+      <figure class="fig"><img src="images/shavings-planer.jpg" alt="電気鉋の周りに溜まる鉋屑。" style="object-position:50% 70%"></figure>
+    </div>
+    <div class="spec-head"><p class="spec-n">02</p><p class="spec-en">WOOD SHAVINGS</p></div>
+    <p class="spec-jp">鉋屑</p>
+    <p class="spec-d">薄さ、重なり、<br>柔軟性、透過性。</p>
+    <dl class="spec-rec"><dt>SOURCE</dt><dd>RESET 木工場</dd><dt>RECORD</dt><dd>FIG. 03</dd></dl>
+  </div>
+
+  <!-- 03 -->
+  <div class="b" style="--x:7;--w:3;top:430px">
+    <div class="spec-frame">
+      <div class="ph">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="0" x2="100" y2="100" vector-effect="non-scaling-stroke"/><line x1="100" y1="0" x2="0" y2="100" vector-effect="non-scaling-stroke"/></svg>
+        <p class="ph-t"><span class="lbl">Photo to come</span>撮影予定：集塵機の中に堆積した木粉の層</p>
+      </div>
+    </div>
+    <div class="spec-head"><p class="spec-n">03</p><p class="spec-en">WOOD DUST</p></div>
+    <p class="spec-jp">木粉</p>
+    <p class="spec-d">集塵機内に堆積する、<br>地層のような模様。</p>
+    <dl class="spec-rec"><dt>SOURCE</dt><dd>RESET 木工場・集塵機</dd><dt>RECORD</dt><dd class="todo">写真 未撮影</dd></dl>
+  </div>
+
+  <!-- 04 -->
+  <div class="b" style="--x:10;--w:3;top:430px">
+    <div class="spec-frame">
+      <figure class="fig"><img src="images/offcuts-joints.jpg" alt="仕口加工をした角材が積み重なっている。" style="object-position:40% 50%"></figure>
+    </div>
+    <div class="spec-head"><p class="spec-n">04</p><p class="spec-en">OFFCUTS</p></div>
+    <p class="spec-jp">端材</p>
+    <p class="spec-d">端材、切断面、加工痕の<br>固有の造形。</p>
+    <dl class="spec-rec"><dt>SOURCE</dt><dd>RESET 木工場</dd><dt>RECORD</dt><dd>FIG. 04</dd></dl>
+  </div>
+
+  <aside class="notes">
+    <p>ここでは、工場で毎日生まれている現象のうち4つを、観察対象として取り上げます。研究アーカイブのように並べています。</p>
+    <p>01 木の節。不規則な形をもち、一つとして同じものがありません。</p>
+    <p>02 鉋屑。薄さ、重なり、柔軟性、そして光を通す透過性があります。</p>
+    <p>03 木粉。集塵機の中に堆積した木粉は、地層のような模様をつくります。</p>
+    <p>04 端材。端材や切断面、加工の痕跡には、それぞれ固有の造形があります。写真は、仕口加工をした材が積まれている様子です。</p>
+    <p>01と03は、まだ写真がありません。今後、工場で撮影して追加する予定です。</p>
+    <p class="q">問いかけ：この4つ以外にも、工場で気になる現象があれば教えてください。</p>
+    <p>→ 次へ：では、これらの素材は別のものになれるのか。</p>
+  </aside>
+</section>
+
+<!-- ============================================================
+     06 — MATERIAL STUDY
+     ============================================================ -->
+<section class="slide s06" data-title="MATERIAL STUDY" aria-label="06 Material study">
+  <header class="meta">
+    <span>RESET<br>製作者の視点（仮）</span>
+    <span>Exhibition Concept<br>Internal Design Review</span>
+    <span>06<br>Material study</span>
+    <span class="pg">06 / 10</span>
+  </header>
+
+  <h2 class="b h" style="--x:1;--w:12;top:150px;font-size:96px">素材は、別のものになれるのか。</h2>
+
+  <p class="b" style="--x:1;--w:12;top:294px;font-size:20px;line-height:1.4"><span class="lbl red" style="margin-right:16px">Status — 研究・検討段階</span><span style="color:var(--ink-2)">完成した技術ではありません。ここに並ぶのは、まだ答えのない問いです。</span></p>
+
+  <div class="b study" style="--x:1;--w:12;top:372px">
+    <p class="lbl study-h">Found — 見つけたもの</p>
+    <p class="lbl study-h">Question — 問い</p>
+    <p class="lbl study-h"></p>
+    <p class="lbl study-h">Possibility — まだ存在しないもの</p>
+
+    <div class="study-row">
+      <div class="cell"><figure class="fig"><img src="images/shavings-strip.jpg" alt="板の上に散らばった鉋屑。"></figure></div>
+      <div class="cell"><p class="q-n">Q1 — 鉋屑</p><p class="q">鉋屑は、<br>テキスタイルになるのか。</p></div>
+      <div class="cell arrow">→</div>
+      <div class="cell"><div class="void"><b>?</b><span>テキスタイル<br>未検証</span></div></div>
+    </div>
+
+    <div class="study-row">
+      <div class="cell">
+        <div class="ph">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="0" x2="100" y2="100" vector-effect="non-scaling-stroke"/><line x1="100" y1="0" x2="0" y2="100" vector-effect="non-scaling-stroke"/></svg>
+          <p class="ph-t"><span class="lbl">Photo to come</span>集塵機内の木粉の堆積</p>
+        </div>
+      </div>
+      <div class="cell"><p class="q-n">Q2 — 木粉</p><p class="q">木粉の堆積は、<br>造形物として固定できるのか。</p></div>
+      <div class="cell arrow">→</div>
+      <div class="cell"><div class="void"><b>?</b><span>固定された造形物<br>未検証</span></div></div>
+    </div>
+
+    <div class="study-row">
+      <div class="cell">
+        <div class="ph">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="0" x2="100" y2="100" vector-effect="non-scaling-stroke"/><line x1="100" y1="0" x2="0" y2="100" vector-effect="non-scaling-stroke"/></svg>
+          <p class="ph-t"><span class="lbl">Photo to come</span>木の節のクローズアップ</p>
+        </div>
+      </div>
+      <div class="cell"><p class="q-n">Q3 — 木の節</p><p class="q">木の節から、<br>新しい家具の形を考えられるのか。</p></div>
+      <div class="cell arrow">→</div>
+      <div class="cell"><div class="void"><b>?</b><span>家具の形<br>未検証</span></div></div>
+    </div>
+  </div>
+
+  <aside class="notes">
+    <p>ここからは問いです。発見した素材は、別のものになれるのか。</p>
+    <p>鉋屑はテキスタイルになるのか。木粉の堆積は、造形物として固定できるのか。木の節から、新しい家具の形を考えられるのか。</p>
+    <p>先にお伝えしておくと、これらはいずれも研究・検討段階です。完成した技術や、すでに実現できている加工ではありません。右側の枠が空いているのはそのためで、ここは「まだ存在しないもの」の場所です。</p>
+    <p class="q">問いかけ：この空欄に何が入りうるか、それぞれの視点で考えてみてください。素材として成立させるために、何を確かめる必要があるかも聞きたいです。</p>
+    <p>→ 次へ：偶然の発見を、どうやってデザインに変えるのか。</p>
+  </aside>
+</section>
+
+<!-- ============================================================
+     07 — DESIGN PROCESS
+     ============================================================ -->
+<section class="slide s07" data-title="DESIGN PROCESS" aria-label="07 Design process">
+  <header class="meta">
+    <span>RESET<br>製作者の視点（仮）</span>
+    <span>Exhibition Concept<br>Internal Design Review</span>
+    <span>07<br>Design process</span>
+    <span class="pg">07 / 10</span>
+  </header>
+
+  <h2 class="b h" style="--x:1;--w:9;top:132px;font-size:64px">偶然から、意図あるデザインへ。</h2>
+
+  <div class="b" style="--x:1;--w:9;top:250px">
+    <p class="step-l"><span class="n">01</span><span class="jp">発見</span><span class="d">意図せず生まれた形に気づく。</span></p>
+    <p class="word w1">DISCOVERY</p>
+  </div>
+  <div class="b" style="--x:1;--w:9;top:440px">
+    <p class="step-l"><span class="n">02</span><span class="jp">観察</span><span class="d">見つめ、切り取り、記録する。</span></p>
+    <p class="word w2">OBSERVATION</p>
+  </div>
+  <div class="b" style="--x:1;--w:9;top:630px">
+    <p class="step-l"><span class="n">03</span><span class="jp">解釈</span><span class="d">何に見えるか、何に使えるか。意味を見つける。</span></p>
+    <p class="word w3">INTERPRETATION</p>
+  </div>
+  <div class="b" style="--x:1;--w:9;top:820px">
+    <p class="step-l"><span class="n red">04</span><span class="jp">意匠</span><span class="d">形を整え、構造と用途を考える。</span></p>
+    <p class="word w4">DESIGN</p>
+  </div>
+
+  <p class="b h" style="--x:5;--w:5;top:892px;font-size:22px;line-height:1.6;font-weight:400;color:var(--ink-2)">偶然生まれた形を、そのまま製品にはしない。<br>製作者の観察と解釈を経て、はじめてデザインになる。</p>
+
+  <p class="b tag" style="--x:10;--w:3;top:252px">01 — そのままの写真</p>
+  <figure class="b fig" style="--x:10;--w:3;top:296px;height:124px">
+    <img src="images/shavings-planer.jpg" alt="鉋屑の写真（そのまま）。">
+  </figure>
+  <p class="b tag" style="--x:10;--w:3;top:442px">02 — 切り取り、拡大する</p>
+  <figure class="b fig zoom" style="--x:10;--w:3;top:486px;height:124px">
+    <img src="images/shavings-planer.jpg" alt="同じ鉋屑の写真を拡大して切り取ったもの。">
+    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+  </figure>
+  <p class="b tag" style="--x:10;--w:3;top:632px">03 — 抽象化する</p>
+  <figure class="b fig" style="--x:10;--w:3;top:676px;height:124px">
+    <img src="images/shavings-planer-halftone.png" alt="同じ鉋屑の写真をハーフトーンで抽象化したもの。">
+  </figure>
+  <p class="b tag red" style="--x:10;--w:3;top:822px">04 — 形の仮説（未定）</p>
+  <div class="b drawing" style="--x:10;--w:3;top:866px;height:124px">
+    <svg viewBox="0 0 430 124" aria-hidden="true">
+      <g fill="none" stroke="#121212" stroke-width="1">
+        <rect x="96" y="44" width="214" height="46"/>
+        <line x1="96" y1="26" x2="310" y2="26"/>
+        <line x1="96" y1="20" x2="96" y2="32"/>
+        <line x1="310" y1="20" x2="310" y2="32"/>
+        <line x1="332" y1="44" x2="332" y2="90"/>
+        <line x1="326" y1="44" x2="338" y2="44"/>
+        <line x1="326" y1="90" x2="338" y2="90"/>
+      </g>
+      <g font-size="15" fill="#121212">
+        <text x="203" y="17" text-anchor="middle">W ?</text>
+        <text x="346" y="72">H ?</text>
+        <text x="96" y="112" fill="#7A7872">FORM · STRUCTURE · USE</text>
+      </g>
+    </svg>
+  </div>
+
+  <aside class="notes">
+    <p>このプレゼンテーションの中心となるページです。偶然から、意図あるデザインへ。</p>
+    <p>発見、観察、解釈、意匠という4つの段階を考えています。右の列は、同じ鉋屑の写真が段階ごとに変わっていく様子です。そのままの写真、切り取って拡大した写真、ハーフトーンで抽象化した図、そして寸法も用途もまだ決まっていない「形の仮説」。</p>
+    <p>重要なのは、意図せず生まれた形をそのまま製品にするのではない、ということです。製作者が素材を観察し、意味を見つけ、形を整え、構造や用途を考える。この過程を経て初めて、偶然はデザインになります。</p>
+    <p>文字の色が淡いグレーから赤へ変わっていくのは、偶然が意図へ変わっていく過程を表しています。</p>
+    <p class="q">問いかけ：この4段階のうち、デザイナーとして最も関わりたいのはどこですか。製作者とデザイナーの役割分担も含めて考えてみてください。</p>
+    <p>→ 次へ：では、何をどのような形にできるのか。</p>
+  </aside>
+</section>
+
+<!-- ============================================================
+     08 — DESIGN DIRECTION
+     ============================================================ -->
+<section class="slide s08" data-title="DESIGN DIRECTION" aria-label="08 Design direction">
+  <header class="meta">
+    <span>RESET<br>製作者の視点（仮）</span>
+    <span>Exhibition Concept<br>Internal Design Review</span>
+    <span>08<br>Design direction</span>
+    <span class="pg">08 / 10</span>
+  </header>
+
+  <h2 class="b h" style="--x:1;--w:8;top:150px;font-size:96px">何を、どのような形に<br>できるだろう。</h2>
+  <div class="b" style="--x:10;--w:3;top:176px">
+    <p class="lbl red">Hypotheses — 仮説</p>
+    <p class="h" style="font-size:24px;line-height:1.5;margin-top:8px;white-space:normal">書かれているのは仮説。<br>空欄は、これから<br>埋める場所。</p>
+  </div>
+
+  <div class="b mx" style="--x:1;--w:12;top:430px">
+    <div class="mx-h"><p class="en" style="color:var(--grey)">MATERIAL</p><p class="jp">素材 × 展開先</p></div>
+    <div class="mx-h"><p class="en">FURNITURE</p><p class="jp">家具</p></div>
+    <div class="mx-h"><p class="en">LIGHTING</p><p class="jp">照明</p></div>
+    <div class="mx-h"><p class="en">PANEL</p><p class="jp">パネル</p></div>
+    <div class="mx-h"><p class="en">OBJECT</p><p class="jp">オブジェクト</p></div>
+    <div class="mx-h open"><p class="en">?</p><p class="jp">その他の可能性</p></div>
+
+    <div class="mx-r"><p class="jp">節</p><p class="en">01 WOOD KNOTS</p></div>
+    <div class="mx-r"><p class="hyp">節の輪郭を、<br>天板の形に？</p></div>
+    <div class="mx-r"><p class="hyp">節の抜けから、<br>光を通す？</p></div>
+    <div class="mx-r"><i class="reg"></i></div>
+    <div class="mx-r"><i class="reg"></i></div>
+    <div class="mx-r"><i class="reg"></i></div>
+
+    <div class="mx-r"><p class="jp">鉋屑</p><p class="en">02 WOOD SHAVINGS</p></div>
+    <div class="mx-r"><i class="reg"></i></div>
+    <div class="mx-r"><p class="hyp">薄さと透過性を、<br>シェードに？</p></div>
+    <div class="mx-r"><p class="hyp">重ねて吊るす、<br>間仕切りに？</p></div>
+    <div class="mx-r"><i class="reg"></i></div>
+    <div class="mx-r"><i class="reg"></i></div>
+
+    <div class="mx-r"><p class="jp">木粉</p><p class="en">03 WOOD DUST</p></div>
+    <div class="mx-r"><p class="hyp">堆積の層を、<br>座面に見せる？</p></div>
+    <div class="mx-r"><i class="reg"></i></div>
+    <div class="mx-r"><i class="reg"></i></div>
+    <div class="mx-r"><p class="hyp">地層のような<br>塊として固定？</p></div>
+    <div class="mx-r"><i class="reg"></i></div>
+
+    <div class="mx-r"><p class="jp">端材</p><p class="en">04 OFFCUTS</p></div>
+    <div class="mx-r"><i class="reg"></i></div>
+    <div class="mx-r"><i class="reg"></i></div>
+    <div class="mx-r"><p class="hyp">切断面を並べた<br>面材に？</p></div>
+    <div class="mx-r"><p class="hyp">加工痕を、<br>標本のように？</p></div>
+    <div class="mx-r"><i class="reg"></i></div>
+  </div>
+
+  <aside class="notes">
+    <p>では、何を、どのような形にできるのか。4つの素材と、家具・照明・パネル・オブジェクトといった展開先を掛け合わせて整理してみました。</p>
+    <p>書き込まれているのは、すべて仮説です。どれも決まっているわけではありません。あえて空欄の方が多くなるようにしています。</p>
+    <p>一番右の列は、家具や照明といった既存の分類に当てはまらない可能性のために空けています。</p>
+    <p class="q">問いかけ：どの空欄なら、自分は形を描けそうですか。逆に、ここに書いた仮説で違和感のあるものはどれですか。</p>
+    <p>→ 次へ：こうした過程を、展示としてどう見せるか。</p>
+  </aside>
+</section>
+
+<!-- ============================================================
+     09 — EXHIBITION DIRECTION
+     ============================================================ -->
+<section class="slide s09" data-title="EXHIBITION DIRECTION" aria-label="09 Exhibition direction">
+  <header class="meta">
+    <span>RESET<br>製作者の視点（仮）</span>
+    <span>Exhibition Concept<br>Internal Design Review</span>
+    <span>09<br>Exhibition direction</span>
+    <span class="pg">09 / 10</span>
+  </header>
+
+  <h2 class="b h" style="--x:1;--w:5;top:150px;font-size:76px">発見のプロセスを、<br>どう展示するか。</h2>
+
+  <div class="b" style="--x:1;--w:5;top:372px">
+    <p class="cap" style="font-size:22px;color:var(--ink-2)">伝えたいのは、家具の完成形だけではない。</p>
+    <p class="flow" style="margin-top:8px">発見<i>→</i>実験<i>→</i>検討<i>→</i>造形</p>
+    <p class="cap" style="font-size:22px;color:var(--ink-2)">その過程そのもの。</p>
+  </div>
+
+  <div class="b" style="--x:1;--w:5;top:580px">
+    <p class="lbl red" style="margin-bottom:12px">参考アイデア — 確定案ではありません</p>
+    <ol class="ideas">
+      <li><span>A</span>素材サンプルと、完成作品の関係</li>
+      <li><span>B</span>工場での製作過程を記録した写真</li>
+      <li><span>C</span>実験途中の素材や試作品</li>
+      <li><span>D</span>製作者による観察やスケッチ</li>
+      <li><span>E</span>作品と素材研究が共存する展示空間</li>
+    </ol>
+  </div>
+
+  <figure class="fig" style="left:821px;top:120px;right:0;height:580px">
+    <img src="images/perspective-02.jpg" alt="RESETの検討用パース。大きな窓のある明るい空間に、吊り下げられたパネルや木のブロックが置かれている。" style="object-position:50% 50%">
+  </figure>
+  <p class="b cap" style="--x:6;--w:7;top:712px">FIG. 05 — 検討用パース（RESET）。空間のイメージを共有するための一案であり、確定した展示計画ではありません。</p>
+
+  <figure class="fig" style="left:821px;top:772px;width:430px;height:210px">
+    <img src="images/perspective-01.jpg" alt="同じ空間を斜めから見た検討用パース。" style="object-position:50% 55%">
+  </figure>
+  <figure class="fig" style="left:1275px;top:772px;right:0;height:210px">
+    <img src="images/perspective-03.jpg" alt="同じ空間を左側から見た検討用パース。" style="object-position:50% 60%">
+  </figure>
+  <p class="b cap" style="--x:6;--w:3;top:990px;font-size:15px">FIG. 06 — 検討用パース</p>
+  <p class="b cap" style="--x:9;--w:3;top:990px;font-size:15px">FIG. 07 — 検討用パース</p>
+
+  <p class="b" style="--x:1;--w:5;top:930px;font-size:24px;line-height:1.5;font-weight:500"><span class="lbl red" style="display:block;font-weight:400">Open</span>空間演出は、このチームで議論して決める。</p>
+
+  <aside class="notes">
+    <p>次に、展示の方法です。この展示で伝えたいのは、家具の完成形だけではありません。素材の発見、実験、検討、そして造形へ至る過程そのものです。</p>
+    <p>左に5つの参考アイデアを挙げました。素材サンプルと完成作品の関係、工場での製作過程を記録した写真、実験途中の素材や試作品、製作者による観察やスケッチ、作品と素材研究が共存する展示空間。いずれも確定案ではなく、方向性を探るための材料です。</p>
+    <p>右の画像は、RESETで作成した検討用のパースです。空間のイメージを共有するための一案であり、確定した展示計画ではありません。</p>
+    <p class="q">問いかけ：空間演出については、このチームで議論しながら決めていきたいと考えています。過程を見せるために、どんな見せ方がありえるでしょうか。</p>
+    <p>→ 次へ：最後に、皆さんへの問いです。</p>
+  </aside>
+</section>
+
+<!-- ============================================================
+     10 — DISCUSSION
+     ============================================================ -->
+<section class="slide s10" data-title="DISCUSSION" aria-label="10 Discussion">
+  <header class="meta">
+    <span>RESET<br>製作者の視点（仮）</span>
+    <span>Exhibition Concept<br>Internal Design Review</span>
+    <span>10<br>Discussion</span>
+    <span class="pg">10 / 10</span>
+  </header>
+
+  <h2 class="b h" style="--x:1;--w:12;top:150px;font-size:72px">私たちは、何を発見できるだろう。</h2>
+
+  <ol class="b qs" style="--x:1;--w:12;top:290px">
+    <li><span>Q1</span><b>どの素材の現象に、最もデザインの可能性を感じるか。</b></li>
+    <li><span>Q2</span><b>偶然の発見を、どのように造形へ展開できるか。</b></li>
+    <li><span>Q3</span><b>製作者の視点を、展示空間でどう伝えるか。</b></li>
+    <li><span>Q4</span><b>家具、素材、実験の関係を、どう表現するか。</b></li>
+    <li><span>Q5</span><b>今回のコンセプトに、足りない視点は何か。</b></li>
+    <li class="yours"><span>Q6</span><b><u></u>あなたの問い</b></li>
+  </ol>
+
+  <div class="band"></div>
+  <p class="b h" style="--x:1;--w:10;top:712px;font-size:124px;line-height:1.1;color:var(--paper)">偶然生まれたものを、<br>意図あるデザインへ。</p>
+  <p class="b" style="--x:10;--w:3;top:972px;font-size:22px;line-height:1.4;color:var(--paper);text-align:right"><span class="red">→</span> ここから、ディスカッションへ。</p>
+
+  <aside class="notes">
+    <p>最後に、皆さんへの問いです。</p>
+    <p>Q1 どの素材の現象に、最もデザインの可能性を感じるか。Q2 偶然の発見を、どのように造形へ展開できるか。Q3 製作者の視点を、展示空間でどう伝えるか。Q4 家具、素材、実験の関係を、どう表現するか。Q5 今回のコンセプトに足りない視点は何か。</p>
+    <p>6つ目は空欄にしています。ここまで聞いて生まれた、皆さん自身の問いを加えてください。</p>
+    <p>偶然生まれたものを、意図あるデザインへ。これが今回の展示の軸ですが、それをどう解釈し、どう形にするかはまだ開かれています。ここからディスカッションに移りましょう。</p>
+    <p>進行メモ：表紙のタイトル候補についても、この時間に意見をもらう。</p>
+  </aside>
+</section>
+
+</main>
+
+<aside class="notes-panel" id="notes-panel" aria-live="polite">
+  <p class="notes-head" id="notes-head"></p>
+  <div class="notes-body" id="notes-body"></div>
+</aside>
+<p class="hint" id="hint">← → / Space：スライド移動　F：全画面　N：発表者ノート</p>
+
+<script src="js/deck.js"></script>
+</body>
+</html>
