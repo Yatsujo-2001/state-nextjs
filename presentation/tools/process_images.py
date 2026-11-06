@@ -11,6 +11,8 @@ Usage (from the repository root):
 Requires: Pillow, numpy
 """
 
+import subprocess
+import tempfile
 from pathlib import Path
 
 import numpy as np
@@ -42,6 +44,20 @@ PHOTOS = {
 # name: (source photo name above, dot cell size in px)
 HALFTONES = {
     "shavings-planer-halftone": ("shavings-planer", 7),
+}
+
+# Vector drawings from PDF (rendered with Poppler's pdftoppm).
+# name: (source pdf, crop box as fractions of the page (l, t, r, b),
+#        boxes to blank out as fractions of the page, output width)
+DRAWINGS = {
+    # isometric view from the venue's own sheet; the spec text and power legend
+    # are blanked out because the slide sets those facts in its own type
+    "venue-studio3-iso": (
+        "venue-the-lab-studio-3.pdf",
+        (0.040, 0.360, 0.615, 0.955),
+        [(0.040, 0.340, 0.245, 0.484)],
+        1800,
+    ),
 }
 
 
@@ -104,8 +120,37 @@ def halftone(gray, cell):
     return Image.fromarray(rgb.clip(0, 255).astype(np.uint8), "RGB")
 
 
+def drawing(pdf, crop, blanks, width):
+    """Render a PDF page, crop it, and recolour it as ink lines on paper."""
+    with tempfile.TemporaryDirectory() as tmp:
+        base = Path(tmp) / "page"
+        subprocess.run(
+            ["pdftoppm", "-r", "300", "-gray", "-png", "-singlefile", str(SRC / pdf), str(base)],
+            check=True,
+            stderr=subprocess.DEVNULL,
+        )
+        page = Image.open(str(base) + ".png").convert("L")
+    w, h = page.size
+    draw = ImageDraw.Draw(page)
+    for l, t, r, b in blanks:
+        draw.rectangle((l * w, t * h, r * w, b * h), fill=255)
+    l, t, r, b = crop
+    im = page.crop((round(l * w), round(t * h), round(r * w), round(b * h)))
+    im = im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)
+    # thin vector lines go grey when reduced: deepen them, keep the paper clean
+    a = np.asarray(im).astype(np.float32) / 255.0
+    a = np.clip((a - 0.05) / 0.85, 0, 1) ** 1.6
+    a = a[..., None]
+    rgb = np.array(INK, np.float32) + (np.array(PAPER, np.float32) - np.array(INK, np.float32)) * a
+    return Image.fromarray(rgb.clip(0, 255).astype(np.uint8), "RGB")
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
+    for name, (pdf, crop, blanks, width) in DRAWINGS.items():
+        d = drawing(pdf, crop, blanks, width)
+        d.save(OUT / f"{name}.png", optimize=True)
+        print(f"{name}.png  {d.size[0]}x{d.size[1]}")
     mono = {}
     for i, (name, (file, box, max_w)) in enumerate(PHOTOS.items()):
         im = load_crop(file, box, max_w)
