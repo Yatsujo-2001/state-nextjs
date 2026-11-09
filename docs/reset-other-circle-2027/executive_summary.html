@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>RESET Other Circle 2027 出展判断</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ffffff; --panel:#EAE8E3; --ink:#161616; --sub:#5E5E5E; --mute:#8A8A86;
+    --rule:#161616; --hair:#BDBAB2; --red:#D2291C; --dark:#0F0F0F;
+  }
+  @page { size: 297mm 210mm; margin: 0; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:var(--paper); }
+  body{ font-family:"Inter","Noto Sans JP",Arial,sans-serif; color:var(--ink); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .jp{ font-family:"Noto Sans JP",sans-serif; }
+  .page{ width:297mm; height:210mm; position:relative; page-break-after:always; overflow:hidden; background:var(--paper); }
+  .page:last-child{ page-break-after:auto; }
+  .panel{ position:absolute; left:0; right:0; top:21.5mm; height:167mm; background:var(--panel); padding:9mm 9.5mm 7mm; }
+  .panel.dark{ background:var(--dark); color:#fff; }
+  .hdr{ display:grid; grid-template-columns: 1fr 1fr 1fr 22mm; font-size:6.6pt; line-height:1.45; color:var(--ink); }
+  .dark .hdr{ color:#fff; }
+  .hdr .no{ text-align:right; }
+  .hdr .red{ color:var(--red); }
+  h1{ font-family:"Noto Sans JP",sans-serif; font-weight:300; font-size:30pt; line-height:1.22; letter-spacing:.02em; margin-top:7mm; }
+  h1.xl{ font-size:40pt; }
+  .lead{ font-family:"Noto Sans JP"; font-weight:400; font-size:10.5pt; line-height:1.6; color:var(--sub); margin-top:3mm; }
+  .eyebrow{ font-size:6.4pt; letter-spacing:.06em; color:var(--sub); text-transform:uppercase; }
+  .eyebrow.red{ color:var(--red); }
+  .grid{ display:grid; gap:7mm; }
+  .g2{ grid-template-columns:1fr 1fr; }
+  .g3{ grid-template-columns:1fr 1fr 1fr; }
+  .g4{ grid-template-columns:repeat(4,1fr); }
+  .g-l{ grid-template-columns:1.15fr .85fr; }
+  .rule{ border-top:1px solid var(--rule); padding-top:2.2mm; }
+  .big{ font-family:"Inter","Noto Sans JP"; font-weight:300; font-size:30pt; line-height:1; letter-spacing:-.01em; }
+  .big small{ font-size:12pt; font-weight:300; margin-left:1mm; }
+  .big.red{ color:var(--red); }
+  .cap{ font-family:"Noto Sans JP"; font-size:8.2pt; line-height:1.55; color:var(--ink); margin-top:2mm; }
+  .cap.sub{ color:var(--sub); }
+  .k{ font-family:"Noto Sans JP"; font-weight:500; font-size:10pt; line-height:1.45; }
+  .tx{ font-family:"Noto Sans JP"; font-size:8.3pt; line-height:1.6; }
+  .tx b{ font-weight:500; }
+  ul.tx{ list-style:none; }
+  ul.tx li{ padding-left:3.2mm; text-indent:-3.2mm; margin:.8mm 0; }
+  ul.tx li::before{ content:"—"; color:var(--mute); margin-right:1.2mm; }
+  table{ width:100%; border-collapse:collapse; font-family:"Noto Sans JP"; font-size:7.6pt; line-height:1.45; }
+  th{ text-align:left; font-weight:500; font-size:6.8pt; color:var(--sub); border-top:1px solid var(--rule); border-bottom:1px solid var(--hair); padding:1.6mm 1.6mm 1.4mm 0; vertical-align:bottom; }
+  td{ border-bottom:1px solid var(--hair); padding:1.5mm 1.6mm 1.5mm 0; vertical-align:top; }
+  td.n, th.n{ text-align:right; font-family:"Inter","Noto Sans JP"; font-variant-numeric:tabular-nums; }
+  tr.hl td{ background:rgba(210,41,28,.07); }
+  .kv td:first-child{ white-space:nowrap; color:var(--sub); width:1%; padding-right:3mm; }
+  .tag{ display:inline-block; font-size:6.2pt; padding:.3mm 1.4mm; border:1px solid var(--ink); border-radius:1mm; margin-right:1mm; white-space:nowrap; }
+  .tag.r{ border-color:var(--red); color:var(--red); }
+  .tag.f{ background:var(--ink); color:#fff; }
+  .src{ position:absolute; left:9.5mm; right:9.5mm; bottom:5mm; font-family:"Noto Sans JP"; font-size:5.8pt; line-height:1.45; color:var(--mute); }
+  .dark .src{ color:#9a9a9a; }
+  .quote{ font-family:"Noto Sans JP"; font-weight:300; font-size:12pt; line-height:1.55; }
+  .red-t{ color:var(--red); }
+  .band{ position:absolute; left:0; right:0; bottom:0; height:44mm; background:var(--dark); color:#fff; padding:7mm 9.5mm; }
+  .band .t{ font-family:"Noto Sans JP"; font-weight:300; font-size:24pt; line-height:1.3; }
+  .gate{ border-top:1px solid var(--rule); padding-top:2mm; }
+  .gate .d{ font-family:"Inter"; font-size:15pt; font-weight:300; }
+  .mt2{ margin-top:2mm; } .mt3{ margin-top:3mm; } .mt4{ margin-top:4mm; } .mt5{ margin-top:5mm; } .mt6{ margin-top:6mm; }
+  .verdict{ display:inline-block; border:1.2px solid var(--red); color:var(--red); font-family:"Noto Sans JP"; font-weight:500; font-size:11pt; padding:1.2mm 3mm; border-radius:1mm; }
+</style>
+</head>
+<body>
+
+<!-- 01 ─────────────────────────────────────────────── -->
+<section class="page"><div class="panel">
+  <div class="hdr"><div>RESET<br>Other Circle 2027 出展判断（案）</div><div>Management Review<br>経営会議資料</div><div>01<br>Decision</div><div class="no">01 / 08</div></div>
+  <div class="grid g-l" style="margin-top:2mm">
+    <div>
+      <h1>出展は「条件付き推奨」。<br>応募はする、規模は絞る。</h1>
+      <p class="lead">本資料は、展示コンセプト（製作者の視点）を前提に、<br>投資判断に必要な事実・費用・回収見通しだけをまとめたものです。</p>
+      <div class="mt5"><span class="verdict">判断：条件付き推奨（15〜30㎡）</span></div>
+    </div>
+    <div class="tx" style="margin-top:9mm">
+      <div class="eyebrow">結論の根拠</div>
+      <ul class="tx mt2">
+        <li>主催者の選定軸は「アイデアから完成品までのエネルギー」。プロセス重視でRESETと一致</li>
+        <li>2026年、製作の痕跡や端材を扱う日本ブランド（atik、FATE INDUSTRIES、Siin Siin）が選出済み</li>
+        <li>ただし、12か月以内に粗利益で回収できる見込みは低い。<b>ブランド・ネットワークへの投資として24か月で評価</b></li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid g4" style="position:absolute; left:9.5mm; right:9.5mm; top:104mm">
+    <div class="rule"><div class="eyebrow red">応募締切</div><div class="big red mt2">12.18</div><div class="cap">2026年12月18日。応募は無料、出展料は選考後のオファーで確定</div></div>
+    <div class="rule"><div class="eyebrow">2027年出展料（税抜）</div><div class="big mt2">€650<small>/㎡</small></div><div class="cap">最初の5㎡は€4,000。空間デザイン・制作進行・コンテンツ制作を含む</div></div>
+    <div class="rule"><div class="eyebrow">Studio 3全館（178㎡）定価計算</div><div class="big mt2">€116k</div><div class="cap">出展料だけで約2,058万円、総額は約6,000万円。<b>個別見積で大幅減額がない限り見送り</b></div></div>
+    <div class="rule"><div class="eyebrow">推奨規模の総額目安</div><div class="big mt2">1,560<small>万円</small></div><div class="cap">25㎡前後・3名の場合（予備費12%込）。予算上限1,600万円を提案</div></div>
+  </div>
+  <div class="src">出典：othercircle.com/apply（2026年10月1日更新）、Dezeen 2026年6月23日、othercircle.com/exhibitors。為替 1EUR＝176.77円（ECB 2026年11月6日）。確認日 2026年11月9日。詳細は「市場調査レポート（詳細版）」第1・6章。</div>
+</div></section>
+
+<!-- 02 ─────────────────────────────────────────────── -->
+<section class="page"><div class="panel">
+  <div class="hdr"><div>RESET<br>Other Circle 2027 出展判断（案）</div><div>Management Review<br>経営会議資料</div><div>02<br>Why Other Circle</div><div class="no">02 / 08</div></div>
+  <h1>なぜ Other Circle か。<br>必然性は「部分的にある、唯一ではない」。</h1>
+  <div class="grid g3 mt5">
+    <div class="rule">
+      <div class="eyebrow">01 — 主催者の方針</div>
+      <p class="quote mt2">“how does the energy of the original idea translate all the way through the finished object”</p>
+      <p class="cap sub">共同キュレーション・ディレクター Svend Jacob Pedersen（Dezeen 2026年6月23日）。プロセス重視の選定軸は、RESETのDISCOVERY→DESIGNと一致する</p>
+    </div>
+    <div class="rule">
+      <div class="eyebrow">02 — 出展事例</div>
+      <table class="mt2">
+        <tr><td>atik</td><td>北海道ミズナラ端材の積層</td></tr>
+        <tr><td>FATE INDUSTRIES</td><td>溶接痕・焼け色を表現に</td></tr>
+        <tr><td>Siin Siin</td><td>切断・溶接痕や機械誤差を残す</td></tr>
+        <tr><td>Offsite／Crude</td><td>工場廃材／廃棄ソファ</td></tr>
+      </table>
+      <p class="cap sub">2026年の出展は90件（うち日本7組）、2025年は55件。小売・ギャラリーも出展者側にいる（Andreas Murkudis、Innenkreis、Voo Store ほか）</p>
+    </div>
+    <div class="rule">
+      <div class="eyebrow">03 — 小規模ブランドに有利な形式</div>
+      <p class="quote mt2">“if you can go to one place and see a lot of exhibitors together, the smaller exhibitors can compete.”</p>
+      <p class="cap sub">Dezeen 2025年6月17日。3daysofdesignの公式プログラム外の独立展示。出展者どうしの協業例もある（JOY OBJECTS × Emma Clarke：2025年に会場で出会い、2026年に共同作品を発表）</p>
+    </div>
+  </div>
+  <div class="grid g2 mt5">
+    <div>
+      <div class="eyebrow red">必然性を弱める事実</div>
+      <ul class="tx mt2">
+        <li>「偶然・痕跡」はFATEとSiin Siinが2026年に提示済み。<b>コンセプトだけでは新規性が弱い</b></li>
+        <li>同じ形式はミラノのAlcovaにもある。日本ブランドの多くは3daysofdesign公式枠で出展（Time & Style、Ishinomaki Lab）</li>
+        <li>来場者数・商談・受注の実績は<b>非公開</b>。2025年は「招待制・出展者無料」、2027年は有料制</li>
+      </ul>
+    </div>
+    <div>
+      <div class="eyebrow">RESETの差別化軸（コンセプトは変更しない）</div>
+      <ul class="tx mt2">
+        <li><b>施工会社の木工場</b>から生まれたブランド。2026年の出展者に同様の例は見当たらない</li>
+        <li>節・鉋屑・木粉・端材の<b>4現象を同じ工場で横断的に記録</b>（他社は1素材・1工程）</li>
+        <li>スツールから空間演出まで、<b>施工力を実物で示せる</b>（SETUPの案件につながる）</li>
+      </ul>
+    </div>
+  </div>
+  <div class="src">出典：Dezeen（2025年6月17日・2026年6月23日）、othercircle.com/exhibitors（2026年6月25日更新）、Stir World（2025年。othercircle.comに転載）、Dezeen 2026年6月18日（日本デザインの展示7選）。</div>
+</div></section>
+
+<!-- 03 ─────────────────────────────────────────────── -->
+<section class="page"><div class="panel">
+  <div class="hdr"><div>RESET<br>Other Circle 2027 出展判断（案）</div><div>Management Review<br>経営会議資料</div><div>03<br>Opportunities</div><div class="no">03 / 08</div></div>
+  <h1>機会は3つ。経路も時間軸も違う。</h1>
+  <div class="grid g3 mt5">
+    <div class="rule">
+      <div class="eyebrow">A — RESET 家具販売</div>
+      <div class="k mt2">直販・ギャラリー委託</div>
+      <table class="mt2 kv">
+        <tr><td>候補</td><td>Innenkreis（CPH）、MW Galerie（パリ：日本×北欧）、ETAGE Projects、Gallery FUMI、Adorno（オンライン）</td></tr>
+        <tr><td>前提</td><td>EUR建て価格表、標準納期、梱包、DAP/DDP条件。<b>小型で発送しやすい定番2〜3型</b></td></tr>
+        <tr><td>時間軸</td><td>0〜6か月</td></tr>
+        <tr><td>実現性</td><td><span class="tag">中</span></td></tr>
+      </table>
+      <p class="cap sub">参考：atikは5〜8万円（$450〜730）の小型チェアで展開</p>
+    </div>
+    <div class="rule">
+      <div class="eyebrow">B — 海外取引・協業</div>
+      <div class="k mt2">販売店・スタジオ・招待</div>
+      <table class="mt2 kv">
+        <tr><td>候補</td><td>Andreas Murkudis（ベルリン、OC2年連続）、Voo Store（2026年公式ストア）、VASTO（バルセロナ）、出展スタジオとの共同開発</td></tr>
+        <tr><td>前提</td><td>継続供給、英文での条件提示。代理店契約は時期尚早</td></tr>
+        <tr><td>時間軸</td><td>3〜12か月</td></tr>
+        <tr><td>実現性</td><td><span class="tag">低〜中</span></td></tr>
+      </table>
+      <p class="cap sub">出展者リスト（2026年は3月に発表）＝会期前に面談できる候補リスト</p>
+    </div>
+    <div class="rule">
+      <div class="eyebrow red">C — SETUP 施工・特注什器</div>
+      <div class="k mt2">日本国内での製作・施工の受託</div>
+      <table class="mt2 kv">
+        <tr><td>経路</td><td>東京で案件を持つ欧州スタジオ（OEO Studio：東京オフィス、Norm Architects：Karimokuと協業）、日本出店する北欧ブランド</td></tr>
+        <tr><td>前提</td><td>英文の施工能力資料、メートル法・EU仕様への対応、支払条件</td></tr>
+        <tr><td>時間軸</td><td>6〜18か月</td></tr>
+        <tr><td>実現性</td><td><span class="tag">中（国内）</span><span class="tag r">低（海外施工）</span></td></tr>
+      </table>
+      <p class="cap sub">海外での直接施工は、資格・保険・価格で不利。国内案件に絞る</p>
+    </div>
+  </div>
+  <div class="mt5 tx"><b>示唆：</b>atikの販路は、展示後もデザイナー自身の店舗（Tortoise、LA）が中心。<b>展示前からの人的ネットワークと、展示の成果を区別する必要がある</b>。RESETには既存の海外顧客基盤がないため、会期前の事前営業が成果を左右する。</div>
+  <div class="src">出典：othercircle.com/exhibitors、aaatik.com、Tortoiseニュースレター「Introducing atik」、Wallpaper*（2026年事前記事：OEO Studioの東京オフィス）、Dezeen 2019年5月30日（Karimoku Case Study）。実現性は推計。</div>
+</div></section>
+
+<!-- 04 ─────────────────────────────────────────────── -->
+<section class="page"><div class="panel">
+  <div class="hdr"><div>RESET<br>Other Circle 2027 出展判断（案）</div><div>Management Review<br>経営会議資料</div><div>04<br>Risks</div><div class="no">04 / 08</div></div>
+  <h1>主要リスクと回避策</h1>
+  <table class="mt5">
+    <tr><th style="width:24%">リスク</th><th style="width:8%">可能性</th><th style="width:8%">影響</th><th>回避・軽減策</th></tr>
+    <tr class="hl"><td>費用負担（Studio 3全館なら総額約6,000万円）</td><td><span class="tag r">高</span></td><td><span class="tag r">高</span></td><td>15〜30㎡に限定し、予算上限を先に決める。助成の事前相談。展示品の販売で返送費を圧縮</td></tr>
+    <tr class="hl"><td>受注後の製造能力・品質（素材研究は未完成と提案書が明記）</td><td><span class="tag r">高</span></td><td><span class="tag r">高</span></td><td>販売品目を「再現性を確認した製品」に限定。研究作品は一点物の受注制作として扱う。含水率・強度・塗装の基準を文書化</td></tr>
+    <tr class="hl"><td>受注につながらない（商談実績は非公開）</td><td><span class="tag r">高</span></td><td><span class="tag r">高</span></td><td>会期前に面談15件。KPIは名刺数でなく「有効見込み客」と「見積依頼」。撤退基準を事前に決める</td></tr>
+    <tr><td>空間演出の主導権（料金に主催者の空間デザインを含む）</td><td><span class="tag">中</span></td><td><span class="tag r">高</span></td><td>オファーで設計の分担と自社施工の可否を確認。合わなければ辞退</td></tr>
+    <tr><td>国際輸送・関税・VAT・破損</td><td><span class="tag">中</span></td><td><span class="tag r">高</span></td><td>美術品輸送対応のフォワーダー、ISPM15準拠の木箱、オールリスク保険。カルネと通常輸入の使い分け。輸入VAT25%を価格条件に反映</td></tr>
+    <tr><td>出展後の営業体制の不在</td><td><span class="tag">中</span></td><td><span class="tag r">高</span></td><td>営業責任者を任命（英語での商談・見積・輸出手配）。会期後2週間以内に全件フォロー</td></tr>
+    <tr><td>コンセプトの重複（FATE、Siin Siin、Offsite）</td><td><span class="tag r">高</span></td><td><span class="tag">中</span></td><td>「施工会社の木工場」「4現象の横断的な記録」「家具から空間まで」を前面に出す</td></tr>
+    <tr><td>キュレーション型の商業的制約（受注の仕組みなし）</td><td><span class="tag r">高</span></td><td><span class="tag">中</span></td><td>価格表と問合せ導線を用意。業界向け時間帯（2026年はHappy Hour）を活用</td></tr>
+    <tr><td>主催者の継続性・価格方針の変更（2025年は出展者無料、2027年は有料）</td><td><span class="tag">中</span></td><td><span class="tag">中</span></td><td>単年で判断し、複数年契約はしない。キャンセル規定を確認</td></tr>
+  </table>
+  <div class="src">可能性・影響は推計（高・中・低）。出典：othercircle.com/apply、Stir World 2025（othercircle.comに転載）、提案書p.07（STATUS：研究・検討段階）、skat.dk。詳細は詳細版第7章。</div>
+</div></section>
+
+<!-- 05 ─────────────────────────────────────────────── -->
+<section class="page"><div class="panel">
+  <div class="hdr"><div>RESET<br>Other Circle 2027 出展判断（案）</div><div>Management Review<br>経営会議資料</div><div>05<br>Budget</div><div class="no">05 / 08</div></div>
+  <h1>費用：3つの予算シナリオ</h1>
+  <table class="mt5">
+    <tr><th style="width:26%">費用項目（税抜）</th><th class="n">最小構成<br>15㎡・2名</th><th class="n">推奨<br>25㎡・3名</th><th class="n">標準構成<br>40㎡・3名</th><th class="n">ブランド訴求重視<br>Studio 3全館178㎡・5名</th><th style="width:15%">根拠区分</th></tr>
+    <tr><td>出展料（Other Circle）</td><td class="n">186万円<br>€10,500</td><td class="n">301万円<br>€17,000</td><td class="n">473万円<br>€26,750</td><td class="n">2,058万円<br>€116,450</td><td><span class="tag f">確認済</span></td></tr>
+    <tr><td>作品製作・展示什器</td><td class="n">200万円</td><td class="n">350万円</td><td class="n">550万円</td><td class="n">1,400万円</td><td><span class="tag">推計</span></td></tr>
+    <tr><td>梱包・輸送（往復）・保険・通関</td><td class="n">180万円</td><td class="n">270万円</td><td class="n">370万円</td><td class="n">740万円</td><td><span class="tag r">見積必要</span></td></tr>
+    <tr><td>渡航・宿泊・日当</td><td class="n">181万円</td><td class="n">290万円</td><td class="n">290万円</td><td class="n">513万円</td><td><span class="tag">推計</span></td></tr>
+    <tr><td>現地施工・広報・会期後フォロー</td><td class="n">100万円</td><td class="n">180万円</td><td class="n">260万円</td><td class="n">650万円</td><td><span class="tag">推計</span></td></tr>
+    <tr><td>予備費（12%）</td><td class="n">102万円</td><td class="n">167万円</td><td class="n">233万円</td><td class="n">643万円</td><td><span class="tag">推計</span></td></tr>
+    <tr class="hl"><td><b>出展総費用</b></td><td class="n"><b>948万円</b><br>€53,640</td><td class="n"><b>1,557万円</b><br>€88,070</td><td class="n"><b>2,175万円</b><br>€123,066</td><td class="n"><b>6,004万円</b><br>€339,668</td><td></td></tr>
+  </table>
+  <div class="grid g3 mt5">
+    <div class="tx"><div class="eyebrow">出展料の計算式</div><p class="mt2">€4,000＋（面積−5㎡）×€650。料金に含まれるもの：床面積、空間デザイン、プロジェクトマネジメント、コンテンツ制作、オープニングディナー1席</p></div>
+    <div class="tx"><div class="eyebrow">VAT（25%）</div><p class="mt2">出展料に課税される場合、標準構成で118万円を立替。EU域外事業者は様式31.004で還付を申請できる（翌年9月30日まで）。課税の有無は要確認</p></div>
+    <div class="tx"><div class="eyebrow">助成（東京都中小企業振興公社）</div><p class="mt2">展示会出展助成：上限150万円、助成率2/3。受付は12月1〜14日と1月1〜14日。<b>商談目的・販売開始済み商品・会場で販売しないことなどが要件</b>。適合は要確認</p></div>
+  </div>
+  <div class="src">為替 1EUR＝176.77円（ECB 2026年11月6日）。万円未満四捨五入。輸送は最小＝航空、標準＝海上LCL、全館＝コンテナを想定。宿泊は1室1泊4.5万円、航空券は1人35万円。出典：othercircle.com/apply、skat.dk、東京都中小企業振興公社「令和8年度 展示会出展助成事業 募集要項」。</div>
+</div></section>
+
+<!-- 06 ─────────────────────────────────────────────── -->
+<section class="page"><div class="panel">
+  <div class="hdr"><div>RESET<br>Other Circle 2027 出展判断（案）</div><div>Management Review<br>経営会議資料</div><div>06<br>ROI</div><div class="no">06 / 08</div></div>
+  <h1>回収見通し：12か月での回収は難しい</h1>
+  <div class="grid g2 mt5">
+    <div>
+      <div class="eyebrow">損益分岐に必要な受注（粗利益ベース）</div>
+      <table class="mt2">
+        <tr><th>回収ケース（前提）</th><th class="n">最小<br>948万円</th><th class="n">推奨<br>1,557万円</th><th class="n">標準<br>2,175万円</th></tr>
+        <tr><td>家具直販のみ（平均60万円、粗利50%）</td><td class="n">32件</td><td class="n">52件</td><td class="n">73件</td></tr>
+        <tr><td>海外卸・委託のみ（年150万円/社、粗利30%）</td><td class="n">22社</td><td class="n">35社</td><td class="n">49社</td></tr>
+        <tr><td>SETUP案件のみ（1,500万円、粗利22%）</td><td class="n">3件</td><td class="n">5件</td><td class="n">7件</td></tr>
+      </table>
+      <p class="cap sub">計算式：必要件数＝出展総費用÷（平均受注額×粗利益率）。<br>ROI＝（出展起因の増分粗利益−出展総費用）÷出展総費用×100</p>
+    </div>
+    <div>
+      <div class="eyebrow">複合回収（出展後12か月、出展起因のみ）</div>
+      <table class="mt2">
+        <tr><th>シナリオ</th><th>成果</th><th class="n">粗利益</th><th class="n">ROI 最小</th><th class="n">ROI 標準</th></tr>
+        <tr><td>低位</td><td>家具2件</td><td class="n">40万円</td><td class="n">−96%</td><td class="n">−98%</td></tr>
+        <tr class="hl"><td>中位</td><td>家具6件、委託2社、SETUP 1件（800万円）</td><td class="n">446万円</td><td class="n">−53%</td><td class="n">−79%</td></tr>
+        <tr><td>高位</td><td>家具12件、委託4社、SETUP 2件</td><td class="n">1,320万円</td><td class="n">+39%</td><td class="n">−39%</td></tr>
+      </table>
+      <p class="cap sub">粗利益率の前提：家具直販50%、卸・委託30%、SETUP案件22%。感度（低：35/20/15%、高：65/40/30%）では、標準構成の中位シナリオでROIは−86%〜−73%</p>
+    </div>
+  </div>
+  <div class="grid g4 mt5">
+    <div class="rule"><div class="eyebrow">会期〜3か月</div><div class="big mt2" style="font-size:20pt">76<small>万円</small></div><div class="cap">累計粗利益（中位）。家具・委託の初期成果</div></div>
+    <div class="rule"><div class="eyebrow">〜6か月</div><div class="big mt2" style="font-size:20pt">171<small>万円</small></div><div class="cap">SETUP案件はまだ発生しない想定</div></div>
+    <div class="rule"><div class="eyebrow">〜12か月</div><div class="big mt2" style="font-size:20pt">446<small>万円</small></div><div class="cap">SETUP 1件を含む。標準構成のROIは−79%</div></div>
+    <div class="rule"><div class="eyebrow red">回収期間の目安</div><div class="big red mt2" style="font-size:20pt">約26<small>か月</small></div><div class="cap">最小構成で中位の成果が続く場合。標準構成では約5年</div></div>
+  </div>
+  <div class="src">数値はすべて推計。展示品を販売した場合、製作費は出展費用に計上済みのため、売上全額が回収に寄与する（本試算では保守的に粗利益率で計上）。計算モデル：roi_model.py（詳細版第6章）。</div>
+</div></section>
+
+<!-- 07 ─────────────────────────────────────────────── -->
+<section class="page"><div class="panel">
+  <div class="hdr"><div>RESET<br>Other Circle 2027 出展判断（案）</div><div>Management Review<br>経営会議資料</div><div>07<br>KPI</div><div class="no">07 / 08</div></div>
+  <h1>KPIと判定基準</h1>
+  <div class="grid g-l mt5">
+    <div>
+      <div class="eyebrow">成果ファネル（標準構成、出展後12か月の累計、推計）</div>
+      <table class="mt2">
+        <tr><th>指標</th><th>定義</th><th class="n">低位</th><th class="n">中位</th><th class="n">高位</th></tr>
+        <tr><td>名刺・連絡先交換</td><td>会場で得た連絡先</td><td class="n">60</td><td class="n">150</td><td class="n">300</td></tr>
+        <tr><td>有効な見込み顧客</td><td>権限または案件を持つ相手</td><td class="n">10</td><td class="n">30</td><td class="n">70</td></tr>
+        <tr><td>商談</td><td>価格・納期・仕様まで話した件数</td><td class="n">4</td><td class="n">12</td><td class="n">25</td></tr>
+        <tr><td>見積依頼</td><td>書面での見積・条件の要求</td><td class="n">2</td><td class="n">10</td><td class="n">20</td></tr>
+        <tr class="hl"><td>受注（見積経由）</td><td>家具＋SETUP</td><td class="n">1</td><td class="n">4</td><td class="n">10</td></tr>
+        <tr><td>委託・卸の契約</td><td>継続取引の契約</td><td class="n">0</td><td class="n">2</td><td class="n">4</td></tr>
+        <tr><td>海外媒体での掲載</td><td>記事中でブランド名が言及</td><td class="n">0〜1</td><td class="n">2〜4</td><td class="n">5+</td></tr>
+      </table>
+      <p class="cap sub">来場者数・商談実績は非公開のため、接点の数から積み上げた推計。会期前のアポイント（目標15件）の有無で大きく変動する</p>
+    </div>
+    <div>
+      <div class="eyebrow">目的別の主要KPI（推奨規模）</div>
+      <table class="mt2 kv">
+        <tr><th>目的</th><th>会場（短期）</th><th>会期後（中長期）</th></tr>
+        <tr><td>1 ブランド認知</td><td>プレス取材5件</td><td>海外媒体3件／12か月</td></tr>
+        <tr><td>2 販路開拓</td><td>事前面談15件、有効見込み客25件</td><td>委託・卸2社／12か月</td></tr>
+        <tr><td>3 受注</td><td>会場での販売・予約3件</td><td>家具の見積8件、SETUPの見積2件</td></tr>
+        <tr><td>4 回収・成長</td><td>—</td><td>増分粗利益：12か月で総費用の30%、24か月で100%</td></tr>
+      </table>
+      <div class="eyebrow red mt5">12か月時点の判定</div>
+      <table class="mt2">
+        <tr><td><span class="tag f">成功</span></td><td>粗利益が総費用の50%以上、かつ契約2社以上、かつ掲載3件以上。または確度の高いパイプラインが総費用の2倍以上</td></tr>
+        <tr><td><span class="tag">継続検討</span></td><td>粗利益が20〜50%、契約1社または見積10件以上 → 2028年は縮小・ギャラリー共同展示へ</td></tr>
+        <tr><td><span class="tag r">失敗</span></td><td>粗利益20%未満、かつ契約0社、かつ見積5件未満 → 海外展示は見送り、国内での製品化を優先</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="src">「出展起因」とするのは、会期前の面談・会場で初めて接点を持った相手と、会期後90日以内に再接触した既存の相手からの受注のみ。目標値は仮の値。詳細は詳細版第5章。</div>
+</div></section>
+
+<!-- 08 ─────────────────────────────────────────────── -->
+<section class="page"><div class="panel">
+  <div class="hdr"><div>RESET<br>Other Circle 2027 出展判断（案）</div><div>Management Review<br>経営会議資料</div><div>08<br>Decisions</div><div class="no">08 / 08</div></div>
+  <h1 style="font-size:24pt">判断ゲートと、経営陣が決めること</h1>
+  <div class="grid g4 mt4">
+    <div class="gate"><div class="eyebrow red">G0 応募</div><div class="d mt2">2026.12.18</div><p class="tx mt2">予算上限と主目的を決める。小パターンの平面図とアイデアで応募（20–30㎡区分）</p></div>
+    <div class="gate"><div class="eyebrow">G1 オファー評価</div><div class="d mt2">2027.1–3</div><p class="tx mt2">出展料・会場内の位置、空間デザインの分担（自社施工の可否）、VAT・キャンセル条件、会場での販売の可否。合わなければ辞退</p></div>
+    <div class="gate"><div class="eyebrow">G2 商品化</div><div class="d mt2">2027.4 上旬</div><p class="tx mt2">販売品2〜3型の価格（EUR）・納期・梱包・輸送条件。輸送見積2社以上。事前面談10件以上</p></div>
+    <div class="gate"><div class="eyebrow">G3 出荷</div><div class="d mt2">2027.4–5</div><p class="tx mt2">海上便は4月中旬、航空便は5月下旬。検品・含水率の確認、カルネ・輸出書類</p></div>
+  </div>
+  <div class="eyebrow mt5">経営会議で決定すべき事項</div>
+  <table class="mt2">
+    <tr><td style="width:4%">1</td><td style="width:36%">応募の可否と希望面積</td><td>推奨：応募する。20–30㎡区分</td></tr>
+    <tr><td>2</td><td>予算上限とStudio 3全館の扱い</td><td>推奨：1,600万円以内（予備費込）。全館は個別見積で大幅減額がない限り不採用</td></tr>
+    <tr><td>3</td><td>主目的の優先順位</td><td>ブランド評価／海外販路／SETUP案件。KPIの重みが変わる</td></tr>
+    <tr><td>4</td><td>評価期間と撤退基準</td><td>推奨：12か月で中間評価、24か月で最終評価。失敗基準に該当すれば2028年は見送り</td></tr>
+    <tr><td>5</td><td>営業責任者と会期後の予算</td><td>英語での商談・見積・輸出手配までを担う担当を任命</td></tr>
+    <tr><td>6</td><td>販売する品目の範囲</td><td>再現性を確認した製品のみ販売。研究作品は一点物として扱う</td></tr>
+    <tr><td>7</td><td>助成の申請</td><td>東京都の展示会出展助成（12月・1月受付）。要件に適合しなければ申請しない</td></tr>
+  </table>
+  <div class="src">代替案：採択されない、または条件が合わない場合は、3daysofdesign公式枠でのギャラリー共同展示や日本ブランドの合同展（Japanmade型）を検討する。2028年はCollectible Brusselsも候補。Stockholm Furniture Fair 2027（2月）は時期尚早。Design Mumbaiは2026年中止・今後未定。</div>
+</div></section>
+
+</body>
+</html>
