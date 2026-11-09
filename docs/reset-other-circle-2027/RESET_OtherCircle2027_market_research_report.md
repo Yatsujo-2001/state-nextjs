@@ -88,7 +88,7 @@
 
 | 項目 | 内容 | 出典 |
 |---|---|---|
-| 位置づけ | コペンハーゲンのデザイン展示会。2025年に開始。アート・デザイン・ファッション・食・音楽を横断する「post-disciplinary creative culture」を掲げる | [S1] |
+| 位置づけ | コペンハーゲンのデザイン展示会。2025年に開始。アート・デザイン・ファッション・食・音楽を横断する「post-disciplinary creative culture（分野の垣根を越えた創造文化）」を掲げる | [S1] |
 | 運営チーム | Curation Director：Svend Jacob Pedersen（空間デザインスタジオ Spacon 共同創業パートナー）、Silas Adler（デンマークのファッションブランド Soulland 創業者。Empty / ARCHIVE 共同創業）／Production：Emil Eskesen／Commercial：Josephine Winther-Poupinel／Communications & Partnership：Kristian Nyholm | [S1][S4][S8] |
 | 会場 | The Lab（Vermundsgade 40, 2100 Copenhagen）。写真・映像スタジオを核とする元工業施設で、複数の建物・フロアを使う | [S1][S9] |
 | 開催実績 | 2025年：6月18–20日／2026年：6月10–13日（一般来場は無料・事前登録制） | [S5][S8] |
@@ -120,8 +120,26 @@
   - 招待制プレスプレビュー（6月9日）
   - PIN–UP 誌とのオープニングディナー
   - トーク：Max Lamb × Felix Burrichter、Muuto のデザイン責任者や Copenhagen Contemporary 館長らのパネル
-  - 「Happy Hour: Network, clients and collaborators」（商談・交流の時間帯）
+  - 「Happy Hour: Network, clients and collaborators」（訳：ハッピーアワー：人脈・顧客・協業者との交流。商談・交流の時間帯）
   - ラジオ配信、ワークショップ
+
+#### 主催者・関係者の公式文言（原文と日本語訳）
+
+根拠を検証できるよう、本レポートで参照した主催者の方針・発言の原文と訳を併記します。訳は本レポート作成者によるものです。
+
+| 区分 | 原文（英語） | 日本語訳 | 出典 |
+|---|---|---|---|
+| 理念（About） | other circle is a design exhibition taking place in Copenhagen, Denmark, other circle explores and redefines contemporary design culture. It brings together art, design, fashion, food, and music in a curated setting that responds to the growing need for cross-disciplinary formats with real cultural presence. | other circle は、デンマーク・コペンハーゲンで開催されるデザイン展示会です。現代のデザイン文化を探求し、再定義します。アート、デザイン、ファッション、食、音楽をキュレーションされた場に集め、確かな文化的存在感を持つ分野横断型の形式への高まる需要に応えます。 | [S1] |
+| 標語 | Post-disciplinary creative culture | 分野の垣根を越えた創造文化 | [S1] |
+| 会場の位置づけ | During the exhibition days, The Lab will serve as the primary location for other circle, opening its doors as a site of production and collaboration—offering a lived experience of design in dialogue with its surroundings. | 会期中、The Lab は other circle の主会場となり、制作と協働の場として扉を開きます。周囲の環境と対話するデザインを、実際に体験できる場を提供します。 | [S1] |
+| 2027年の出展料 | Entry fee: EUR 4,000 excl. VAT, covering the first 5 square meters. Additional space: EUR 650 excl. VAT per square meter. The fee covers floor space, spatial design, project management, content production, and one seat at our opening dinner. All terms are set out in the offer provided upon selection. | 出展料：最初の5㎡で4,000ユーロ（VAT別）。追加面積：1㎡あたり650ユーロ（VAT別）。料金には、床面積、空間デザイン、プロジェクトマネジメント、コンテンツ制作、オープニングディナー1席が含まれます。すべての条件は、選考後に提示されるオファーに記載されます。 | [S2] |
+| 独立運営の理由（2025年） | I believe it's at a point where it's too big for one organisation to take full responsibility for curation. To maintain the same level of quality, I think it needs more independent actors. | （3daysofdesign は）1つの組織がキュレーションの全責任を負うには大きくなりすぎた段階にあると思います。同じ質を保つには、もっと独立した担い手が必要だと考えます。 | [S8] |
+| 小規模出展者の位置づけ（2025年） | It's hard to attract attention when you have Hay and Kvadrat around the corner. But if you can go to one place and see a lot of exhibitors together, the smaller exhibitors can compete. | すぐ近くに Hay や Kvadrat があると、注目を集めるのは難しい。でも1か所で多くの出展者をまとめて見られれば、小さな出展者も（大手と）競えます。 | [S8] |
+| 選定の軸（2026年） | In the curatorial process, Silas and I speak a lot about energy – how does the energy of the original idea translate all the way through the finished object being exhibited? | キュレーションの過程で、Silas と私は「エネルギー」についてよく話します。元のアイデアが持つエネルギーは、展示される完成品にまで、どのように伝わっているか、ということです。 | [S9] |
+| 3daysofdesign との関係（2026年） | Our curatorial structure is not immediately compatible with the 3Days of Design structure, and while we are still in respectful dialogue to find common ground, we mutually decided for Other Circle to remain autonomous for our second year. | 私たちのキュレーションの構造は、3daysofdesign の構造とすぐには両立しません。共通点を探る敬意ある対話は続けていますが、2年目は Other Circle が独立を保つことを双方で決めました。 | [S9] |
+| 大手スポンサーについて（2026年） | We really see the interest of bigger brands as an opportunity to create exhibitions at another level, and as curators take our responsibility seriously to create installations which are inspirational and relevant to a design audience. | 大手ブランドの関心は、別次元の展示をつくる機会だと捉えています。キュレーターとして、デザインの観客にとって刺激的で意義のあるインスタレーションをつくる責任を真剣に受け止めています。 | [S9] |
+| 2025年の出展条件（報道） | The invite-only exhibition (free for exhibitors) brought together a diverse range of participants... | 招待制の展示（出展者は無料）には、多様な参加者が集まった…… | [S7]（Stir World） |
+| 3daysofdesign の参加料 | The fee is based on your company's gross profit. We review your financial statements and propose a fee that reflects your business scale and capacity. | 参加料は企業の粗利益に基づきます。財務諸表を確認し、事業規模と負担能力に見合った料金を提示します。 | [S13] |
 
 ### 2-4. 一般的な家具見本市との違い
 
@@ -176,9 +194,9 @@
 | RESET（提案書） | Other Circle 側の根拠 |
 |---|---|
 | 「製作者だからこそ見えるもの」：工程（切る・削る・組む）に立ち会う視点 | 選定軸は「アイデアから完成品までのエネルギーの伝達」[S9] |
-| ACCIDENT：意図せず現れる形 | FATE「precision and accident」、Siin Siin「製作で通常除去される痕跡を残す」が選出済み [S3] |
+| ACCIDENT：意図せず現れる形 | FATE「precision and accident（精密さと偶然）」、Siin Siin「製作で通常除去される痕跡を残す」が選出済み [S3] |
 | 端材・木屑の再価値化 | atik（端材）、Offsite（工場廃材）、Crude（廃棄ソファ）が選出済み [S3] |
-| 家具・素材研究・空間を横断 | 「post-disciplinary」を掲げ、領域横断を評価する [S1] |
+| 家具・素材研究・空間を横断 | 「post-disciplinary（分野横断）」を掲げ、領域横断を評価する [S1] |
 
 **差別化の余地（コンセプトは変更せず、伝え方の重点を示すもの）**
 
@@ -242,7 +260,7 @@
 | 7 | **Offsite** | アイントホーフェン | 2026 | 工場・建設現場の廃材を、製造元と組んで家具化 | 2023年設立、DDW24でデビュー | 文化・ファッション・小売ブランド向けの特注インスタレーション | 2026年は Alcova ミラノ、OC、DDW と多拠点で展開 |
 | 8 | **Crude** | コペンハーゲン | 2026 | 廃棄ソファ・椅子の解体・再構成（「post-growth」の美学） | 2024年設立 | **確認できず** | **確認できず** |
 | 9 | **JOY OBJECTS（+ Emma Clarke）** | ストックホルム／ロンドン | 2025・2026 | 家具・オブジェ。漆・美濃和紙を使った協業 | 2021年設立 | **確認できず** | **2025年の会場で出会い、2026年に協業作品を発表**。展示を通じた協業として確認できる唯一の例 |
-| 10 | **Nao Iwamatsu** | 東京 | 2026 | 「Narrative Minimalism」のプロダクト | 個人デザイナー | **確認できず** | Wallpaper* の3daysofdesign 2026事前記事で言及 |
+| 10 | **Nao Iwamatsu** | 東京 | 2026 | 「Narrative Minimalism（物語性のあるミニマリズム）」のプロダクト | 個人デザイナー | **確認できず** | Wallpaper* の3daysofdesign 2026事前記事で言及 |
 
 出典：[S3]（全出展者の紹介文）、[S10]、[S16]〜[S22]
 
@@ -264,7 +282,7 @@
 - 【未確認】会場写真や空間構成の詳細は、今回確認した範囲では把握できていません。
 
 **(4) 販売先と海外展開**
-- 【確認済】Tortoise（篠本氏が運営する LA の店舗・EC）のニュースレター「Introducing atik: Design in the Grid」が、「コペンハーゲンの Other Circle で6月に初披露」と紹介した上で、自店での販売を告知しています [S16]。
+- 【確認済】Tortoise（篠本氏が運営する LA の店舗・EC）のニュースレター「Introducing atik: Design in the Grid（atikの紹介：グリッドの中のデザイン）」が、「コペンハーゲンの Other Circle で6月に初披露」と紹介した上で、自店での販売を告知しています [S16]。
 - 【確認済】公式サイトの Webストアは「coming soon」で、価格・配送・協業は問合せ制です [S16]。
 - 【分析】**展示後の主な販売経路は、デザイナー自身が以前から持つ小売網（Tortoise）です。** Other Circle 出展の効果として確認できるのは、「Copenhagen で初披露」という**信用の材料（PR素材）**です。新たな取扱店や卸取引が生まれたかは**確認できません**。展示後の販路を Other Circle の成果と断定することはできません。
 
@@ -785,13 +803,13 @@ RESET の家具販売とは、商談の経路が根本的に異なります。
 | S5 | Other Circle「Tickets」 | https://othercircle.com/tickets/ | 更新2026-04-30 |
 | S6 | Other Circle「Press」 | https://othercircle.com/press/ | 更新2026-05-05 |
 | S7 | Other Circle 掲載のプレス抜粋（Stir World、Azure、Business of Home、Vogue US、Wallpaper*、Monocle、Highsnobiety、Hypebeast、Elle Decor Italia、Harper's Bazaar、Dezeen） | 例：https://othercircle.com/stir-world/ ／ https://othercircle.com/azure-magazine/ ／ https://othercircle.com/business-of-home/ ／ https://othercircle.com/dezeen-2/ | 2025-09-24／2026-06-05 |
-| S8 | Dezeen「Copenhagen's design week "needs more independent actors" says Other Circle director」 | https://www.dezeen.com/2025/06/17/other-circle-interview-copenhagen-3-days-of-design/ | 2025-06-17 |
-| S9 | Dezeen「Other Circle seeks inspiration in "creative culture as a whole"」 | https://www.dezeen.com/2026/06/23/other-circle-inspiration-creative-culture-copenhagen/ | 2026-06-23 |
+| S8 | Dezeen「Copenhagen's design week "needs more independent actors" says Other Circle director」（訳：コペンハーゲンのデザインウィークには「もっと独立した担い手が必要」とOther Circleディレクター） | https://www.dezeen.com/2025/06/17/other-circle-interview-copenhagen-3-days-of-design/ | 2025-06-17 |
+| S9 | Dezeen「Other Circle seeks inspiration in "creative culture as a whole"」（訳：Other Circle は「創造文化全体」に着想を求める） | https://www.dezeen.com/2026/06/23/other-circle-inspiration-creative-culture-copenhagen/ | 2026-06-23 |
 | S10 | Wallpaper*「3 Days of Design 2026」事前記事 | https://www.wallpaper.com/design-interiors/design-events/3-days-of-design-2026-copenhagen-preview | 2026年6月（会期前） |
 | S11 | 3daysofdesign 公式（2027年6月9–11日） | https://www.3daysofdesign.dk/ | 確認日時点 |
-| S12 | 3daysofdesign「3daysofdesign 2026 – Truly Made This Moment Matter」 | https://www.3daysofdesign.dk/press-release/3daysofdesign-2026---truly-made-this-moment-matter | 2026年6月 |
-| S13 | 3daysofdesign「Apply as an Exhibitor」「FAQ」 | https://www.3daysofdesign.dk/apply/exhibitor ／ https://www.3daysofdesign.dk/info/faq | 確認日時点 |
-| S14 | Dezeen「Seven exhibitions that showcased Japanese design in Copenhagen」 | https://www.dezeen.com/2026/06/18/exhibitions-japanese-design-copenhagen/ | 2026-06-18 |
+| S12 | 3daysofdesign「3daysofdesign 2026 – Truly Made This Moment Matter」（訳：3daysofdesign 2026、まさに「この瞬間を意味あるものに」した） | https://www.3daysofdesign.dk/press-release/3daysofdesign-2026---truly-made-this-moment-matter | 2026年6月 |
+| S13 | 3daysofdesign「Apply as an Exhibitor（出展者として申し込む）」「FAQ（よくある質問）」 | https://www.3daysofdesign.dk/apply/exhibitor ／ https://www.3daysofdesign.dk/info/faq | 確認日時点 |
+| S14 | Dezeen「Seven exhibitions that showcased Japanese design in Copenhagen」（訳：コペンハーゲンで日本のデザインを紹介した7つの展示） | https://www.dezeen.com/2026/06/18/exhibitions-japanese-design-copenhagen/ | 2026-06-18 |
 | S15 | Wallpaper*「Japanmade Vol. One」 | https://www.wallpaper.com/design-interiors/design-events/japanmade-vol-one-3-days-of-design-2026-copenhagen | 2026年6月 |
 | S16 | atik 公式／Tortoise ニュースレター／Tortoise General Store | https://aaatik.com/ ／ https://us19.campaign-archive.com/?id=a405a4b3fe&u=11b6804dc826570b614b6269e ／ https://shop.tortoisegeneralstore.com/products/atik-model-a-e | 2026年 |
 | S17 | FATE INDUSTRIES「About」「News」、Other Circle 出展の御礼 | https://fateindustries.jp/en/about-2/ ／ https://fateindustries.jp/category/news/ ／ https://fateindustries.jp/2026/06/28/thank-you-for-the-visit-at-other-circle-during-3daysofdesign-2026/ | 更新2026-08-01／2026-06-28 |
@@ -804,9 +822,9 @@ RESET の家具販売とは、商談の経路が根本的に異なります。
 | S24 | Dezeen「Ariake」／ZOZO Artisan「Legnatec」 | https://www.dezeen.com/2018/02/17/japanese-furniture-ariake-products-dilapidated-former-embassy-stockholm-design-week/ ／ https://artisan.zozo.com/en/articles/legnatec | 2018-02-17／2026 |
 | S25 | Stockholm Furniture Fair（中止・隔年化の報道、価格） | https://www.dezeen.com/2025/10/03/stockholm-furniture-fair-cancels-2026-event-relaunch-biennial/ ／ https://stockholmfurniturefair.se/en/for-exhibitors/price-and-information/ | 2025-10-03／確認日時点 |
 | S26 | Collectible（2024年応募案内、2026年版、2027年日程の掲載） | https://collectible.design/wp-content/uploads/2023/10/Application-Brochure-COLLECTIBLE-2024-1.pdf ／ https://collectible.design/2026-bru-edition/ ／ https://www.cantonfair.net/event/30935-collectible-brussels | 2023-10／2026／確認日時点 |
-| S27 | Dezeen「Design Mumbai cancels 2026 edition」 | https://www.dezeen.com/2026/04/22/design-mumbai-cancels-2026-edition/ | 2026-04-22 |
+| S27 | Dezeen「Design Mumbai cancels 2026 edition」（訳：Design Mumbai が2026年の開催を中止） | https://www.dezeen.com/2026/04/22/design-mumbai-cancels-2026-edition/ | 2026-04-22 |
 | S28 | 欧州中央銀行 参照レート | https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml | 2026-11-06 |
-| S29 | デンマーク税務当局「Refund of Danish VAT to non-Danish businesses domiciled outside EU」 | https://skat.dk/en-us/businesses/vat/vat-on-international-trade/vat-on-sales-to-businesses/refund-of-danish-vat-to-foreign-businesses-domiciled-outside-eu | 確認日時点 |
+| S29 | デンマーク税務当局「Refund of Danish VAT to non-Danish businesses domiciled outside EU」（訳：EU域外に所在する外国事業者へのデンマークVAT還付） | https://skat.dk/en-us/businesses/vat/vat-on-international-trade/vat-on-sales-to-businesses/refund-of-danish-vat-to-foreign-businesses-domiciled-outside-eu | 確認日時点 |
 | S30 | 東京都中小企業振興公社「令和8年度 展示会出展助成事業 募集要項」／「市場開拓助成事業」 | https://www.tokyo-kosha.or.jp/support/josei/jigyo/tenjikai/r8/h0iqeh000000fv8i-att/R8_tenjikai_boshuuyoukou_v1-1.pdf ／ https://www.tokyo-kosha.or.jp/support/josei/jigyo/shijo.html | 令和8年度 |
 | S31 | 税関「ATAカルネ」 | https://www.customs.go.jp/kaigairyoko/atacarnet.htm | 確認日時点 |
 | S32 | Adorno（会員制度・手数料） | https://adorno.design/ | 確認日時点（料金はページにより差異あり） |
