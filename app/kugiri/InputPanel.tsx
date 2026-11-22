@@ -1,6 +1,7 @@
 'use client'
 
-import { splitIntoSegments } from '@/lib/kugiri/analyze'
+import { splitIntoSegments } from '@/lib/kugiri/core'
+import { SEGMENT_CHARS } from '@/lib/kugiri/platform'
 import type { Analysis } from '@/lib/kugiri/types'
 import { Button, CloseIcon, FOREIGN_FONT, IconButton } from './ui'
 
@@ -39,7 +40,7 @@ export default function InputPanel({
   onDeleteHistory: (id: string) => void
 }) {
   const trimmed = text.trim()
-  const segments = trimmed ? splitIntoSegments(trimmed).length : 0
+  const segments = trimmed ? splitIntoSegments(trimmed, SEGMENT_CHARS).length : 0
 
   return (
     <div>

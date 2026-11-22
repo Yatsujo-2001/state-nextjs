@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import { KIND_LABEL, MAX_BOX, cardsToCsv, isDue, statusOf } from '@/lib/kugiri/cards'
+import { saveTextFile } from '@/lib/kugiri/platform'
 import { speak } from '@/lib/kugiri/speech'
 import type { CardKind, StudyCard } from '@/lib/kugiri/types'
 import { Button, DownloadIcon, FOREIGN_FONT, IconButton, SpeakerIcon, TrashIcon } from './ui'
@@ -57,13 +58,8 @@ export default function ListView({
   }, [cards, filter, query])
 
   const exportCsv = () => {
-    const blob = new Blob(['﻿' + cardsToCsv(cards)], { type: 'text/csv;charset=utf-8' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'kugiri-cards.csv'
-    a.click()
-    URL.revokeObjectURL(url)
+    // 先頭の BOM で Excel でも文字化けしないようにする
+    void saveTextFile('kugiri-cards.csv', '﻿' + cardsToCsv(cards), 'text/csv;charset=utf-8')
   }
 
   if (cards.length === 0) {

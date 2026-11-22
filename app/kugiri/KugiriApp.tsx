@@ -3,14 +3,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   AnalyzeError,
-  analyzeSegment,
   buildAnalysis,
   makeTitle,
   mergeResults,
   runWithConcurrency,
   splitIntoSegments,
   type SegmentPhase,
-} from '@/lib/kugiri/analyze'
+} from '@/lib/kugiri/core'
+import { INITIAL_DRAFT, REQUIRES_API_KEY, SEGMENT_CHARS, analyzeSegment } from '@/lib/kugiri/platform'
 import { cardKey, gradeCard, isDue, newId, type Grade } from '@/lib/kugiri/cards'
 import { SAMPLE_ANALYSIS } from '@/lib/kugiri/sample'
 import { clearStorage, usePersistentState } from '@/lib/kugiri/storage'
@@ -65,7 +65,7 @@ export default function KugiriApp() {
   const settings = useMemo(() => ({ ...DEFAULT_SETTINGS, ...storedSettings }), [storedSettings])
   const [cards, setCards] = usePersistentState<StudyCard[]>('cards', [])
   const [history, setHistory] = usePersistentState<Analysis[]>('history', [])
-  const [draft, setDraft] = usePersistentState<string>('draft', '')
+  const [draft, setDraft] = usePersistentState<string>('draft', INITIAL_DRAFT)
 
   const [tab, setTab] = useState<Tab>('analyze')
   const [openId, setOpenId] = useState<string | null>(null)
@@ -190,12 +190,12 @@ export default function KugiriApp() {
   const startAnalysis = () => {
     const text = draft.trim()
     if (!text) return
-    if (!settings.apiKey) {
+    if (REQUIRES_API_KEY && !settings.apiKey) {
       setSettingsNotice('自分のテキストを解析するには、Anthropic の APIキーを登録してください。')
       setSettingsOpen(true)
       return
     }
-    const segments: SegmentState[] = splitIntoSegments(text).map((t) => ({
+    const segments: SegmentState[] = splitIntoSegments(text, SEGMENT_CHARS).map((t) => ({
       text: t,
       status: 'pending',
       phase: 'thinking',
@@ -290,7 +290,7 @@ export default function KugiriApp() {
 
   return (
     <div className="min-h-screen bg-bg text-text">
-      <header className="fixed inset-x-0 top-0 z-40 border-b border-[#1a1a1a] bg-bg/95 backdrop-blur">
+      <header className="fixed inset-x-0 top-0 z-40 border-b border-[#1a1a1a] bg-bg/95 pt-[env(safe-area-inset-top)] backdrop-blur">
         <div className="mx-auto flex h-14 max-w-3xl items-center gap-1 px-4">
           <button
             type="button"
@@ -350,7 +350,7 @@ export default function KugiriApp() {
                 setOpenId(SAMPLE_ANALYSIS.id)
                 window.scrollTo({ top: 0 })
               }}
-              hasKey={!!settings.apiKey}
+              hasKey={!REQUIRES_API_KEY || !!settings.apiKey}
               onOpenSettings={() => {
                 setSettingsNotice(null)
                 setSettingsOpen(true)
@@ -393,6 +393,7 @@ export default function KugiriApp() {
 
       <SettingsDialog
         open={settingsOpen}
+        showApiSettings={REQUIRES_API_KEY}
         settings={settings}
         onChange={setSettings}
         onClose={() => setSettingsOpen(false)}

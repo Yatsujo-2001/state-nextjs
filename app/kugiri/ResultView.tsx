@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import type { SegmentPhase } from '@/lib/kugiri/analyze'
+import type { SegmentPhase } from '@/lib/kugiri/core'
+import { REQUIRES_API_KEY } from '@/lib/kugiri/platform'
 import { cardFromChunk, cardFromGrammar, cardFromVocab, cardKey } from '@/lib/kugiri/cards'
 import { speak } from '@/lib/kugiri/speech'
 import type { Chunk, GrammarPoint, Sentence, StudyCard, VocabItem } from '@/lib/kugiri/types'
@@ -118,7 +119,10 @@ export default function ResultView(props: ResultViewProps) {
 
       {isSample && (
         <div className="mb-5 rounded-lg border border-[#2a3a50] bg-[#0f1824] px-4 py-3 font-noto text-xs leading-relaxed text-[#cfe0f6]">
-          これはサンプルです。区切りをタップすると解説が出て、暗記リストに追加できます。自分のテキストを解析するには、右上の設定から APIキーを登録してください。
+          これはサンプルです。区切りをタップすると解説が出て、暗記リストに追加できます。
+          {REQUIRES_API_KEY
+            ? '自分のテキストを解析するには、右上の設定から APIキーを登録してください。'
+            : '自分のテキストは「解析」画面に貼り付けて試せます。'}
         </div>
       )}
 
