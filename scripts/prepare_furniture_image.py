@@ -47,8 +47,13 @@ def flatten_rows(a: np.ndarray, strip: float = 0.12) -> np.ndarray:
     k = max(4, int(w * strip))
     side = np.concatenate([a[:, :k], a[:, -k:]], axis=1)
     bg = smooth1d(np.median(side, axis=1), max(4.0, h * 0.03))
-    gain = np.clip(CELL / np.maximum(bg, 1), 0.8, 1.7)
-    return np.clip(a * gain[:, None, :], 0, 255)
+    g_row = np.clip(CELL / np.maximum(bg, 1), 0.8, 1.7)[:, None, :]
+    # 作品の色はなるべく変えない：背景に近い色の画素だけ行ごとの補正を強く掛ける
+    g_obj = np.clip(CELL / np.median(side.reshape(-1, 3), axis=0), 0.85, 1.15)
+    dist = np.linalg.norm(a - bg[:, None, :], axis=2, keepdims=True)
+    m = np.clip(1 - (dist - 12) / 36, 0, 1)
+    gain = g_obj + (g_row - g_obj) * m
+    return np.clip(a * gain, 0, 255)
 
 
 def float_mode(
