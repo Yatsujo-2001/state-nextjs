@@ -123,6 +123,13 @@ export const ITEMS: FurnitureItem[] = [
     category: 'tables',
     images: ['/furniture/table-02.jpg'],
   },
+  {
+    slug: 'table-03',
+    name: 'Table 03',
+    type: 'Coffee table',
+    category: 'tables',
+    images: ['/furniture/table-03.jpg'],
+  },
 
   // SEATS
   {
