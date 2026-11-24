@@ -75,7 +75,7 @@ export const CATEGORIES: Category[] = [
     short: 'SEATS',
     definition:
       'SEAT [síːt] noun. 腰を下ろすための家具。身体を預け、時間を過ごすための小さな居場所。',
-    labelPosition: 1,
+    labelPosition: 3,
   },
   {
     id: 'storage',
@@ -91,7 +91,7 @@ export const CATEGORIES: Category[] = [
     short: 'LIGHTING',
     definition:
       'LIGHTING [láitiŋ] noun. 光を灯し、空間に陰影を与える道具。灯っていない時間も、ひとつのオブジェとして。',
-    labelPosition: 0,
+    labelPosition: 1,
   },
   {
     id: 'objects',
@@ -145,6 +145,13 @@ export const ITEMS: FurnitureItem[] = [
     type: 'Bench',
     category: 'seats',
     images: ['/furniture/seat-03.jpg'],
+  },
+  {
+    slug: 'seat-04',
+    name: 'Seat 04',
+    type: 'Chair',
+    category: 'seats',
+    images: ['/furniture/seat-04.jpg'],
   },
 
   // STORAGE
