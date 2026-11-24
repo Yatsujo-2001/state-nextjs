@@ -72,7 +72,7 @@ export const CATEGORIES: Category[] = [
     short: 'SEATS',
     definition:
       'SEAT [síːt] noun. 腰を下ろすための家具。身体を預け、時間を過ごすための小さな居場所。',
-    labelPosition: 3,
+    labelPosition: 2,
   },
   {
     id: 'storage',
@@ -171,6 +171,13 @@ export const ITEMS: FurnitureItem[] = [
     type: 'Armchair',
     category: 'seats',
     images: ['/furniture/seat-05.jpg'],
+  },
+  {
+    slug: 'seat-06',
+    name: 'Seat 06',
+    type: 'Stool',
+    category: 'seats',
+    images: ['/furniture/seat-06.jpg'],
   },
 
   // STORAGE
