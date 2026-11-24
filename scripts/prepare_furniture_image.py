@@ -10,6 +10,7 @@
       背景の明るさをセルのグレーに合わせ、周囲に余白を足してふちをぼかし、
       作品をセルの中央に浮かせる（INDEX の見本の雰囲気）。
       --fill で作品の大きさを調整（画像がセル幅・高さの何割に収まるか）。
+      --flatten を付けると、上が暗い・下が明るいなど背景のグラデーションを行ごとにならす。
   --mode bleed
       床や壁ごと見せたい写真向け。4:5 に中央トリミングするだけ。
       --anchor で縦方向の切り出し位置を調整（0=上寄せ, 0.5=中央, 1=下寄せ）。
@@ -39,13 +40,28 @@ def smooth1d(a: np.ndarray, sigma: float) -> np.ndarray:
     return np.stack([np.convolve(p[:, c], k, mode="valid") for c in range(3)], axis=1)
 
 
-def float_mode(img: Image.Image, fill: float, feather: float, extend: bool = False) -> Image.Image:
+def flatten_rows(a: np.ndarray, strip: float = 0.12) -> np.ndarray:
+    """背景の上下グラデーションをならす：左右の端（背景だけの帯）から行ごとの背景色を推定し、
+    各行をセル色に合わせる。作品が左右の端に掛かっていない写真に使う。"""
+    h, w, _ = a.shape
+    k = max(4, int(w * strip))
+    side = np.concatenate([a[:, :k], a[:, -k:]], axis=1)
+    bg = smooth1d(np.median(side, axis=1), max(4.0, h * 0.03))
+    gain = np.clip(CELL / np.maximum(bg, 1), 0.8, 1.7)
+    return np.clip(a * gain[:, None, :], 0, 255)
+
+
+def float_mode(
+    img: Image.Image, fill: float, feather: float, extend: bool = False, flatten: bool = False
+) -> Image.Image:
     """extend=True のときは色合わせとセル色へのフェードをせず、写真の床や壁をそのまま外側へ延ばす"""
     a = np.asarray(img, dtype=np.float32)
     h, w, _ = a.shape
 
     # 1. 背景（外周）の色をセル色に合わせる
-    if not extend:
+    if flatten:
+        a = flatten_rows(a)
+    elif not extend:
         st = max(2, int(min(w, h) * 0.006))
         border = np.concatenate(
             [a[:st].reshape(-1, 3), a[-st:].reshape(-1, 3), a[:, :st].reshape(-1, 3), a[:, -st:].reshape(-1, 3)]
@@ -124,11 +140,12 @@ def main() -> None:
     p.add_argument("--fill", type=float, default=0.74)
     p.add_argument("--feather", type=float, default=0.9, help="余白の何割でセル色まで溶かすか")
     p.add_argument("--anchor", type=float, default=0.5)
+    p.add_argument("--flatten", action="store_true", help="float: 背景の上下グラデーションを行ごとにならす")
     args = p.parse_args()
 
     img = Image.open(args.src).convert("RGB")
     if args.mode == "float":
-        out = float_mode(img, args.fill, args.feather)
+        out = float_mode(img, args.fill, args.feather, flatten=args.flatten)
     elif args.mode == "extend":
         out = float_mode(img, 1.0, args.feather, extend=True)
     else:
