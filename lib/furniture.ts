@@ -80,7 +80,7 @@ export const CATEGORIES: Category[] = [
     short: 'STORAGE',
     definition:
       'STORAGE [stɔ́ːridʒ] noun. ものを収め、整えるための家具。しまうことと見せることのあいだを設計する。',
-    labelPosition: 1,
+    labelPosition: 0,
   },
   {
     id: 'screens',
@@ -88,7 +88,7 @@ export const CATEGORIES: Category[] = [
     short: 'SCREENS',
     definition:
       'SCREEN [skríːn] noun. 空間をゆるやかに仕切る家具。視線をさえぎりながら、光と気配は通す。',
-    labelPosition: 1,
+    labelPosition: 0,
   },
   {
     id: 'lighting',
@@ -164,6 +164,13 @@ export const ITEMS: FurnitureItem[] = [
     type: 'Chair',
     category: 'seats',
     images: ['/furniture/seat-04.jpg'],
+  },
+  {
+    slug: 'seat-05',
+    name: 'Seat 05',
+    type: 'Armchair',
+    category: 'seats',
+    images: ['/furniture/seat-05.jpg'],
   },
 
   // STORAGE
