@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ITEMS, SITE, getCategory, getItem, itemNumber, itemsIn, type Cell } from '@/lib/furniture'
+import { ITEMS, SITE, getCategory, getItem, itemNumber, itemsIn, padCells, type Cell } from '@/lib/furniture'
 import { CellGrid, ItemImage } from '../_components/cells'
 
 export const dynamicParams = false
@@ -42,12 +42,11 @@ export default async function FurnitureDetailPage({ params }: { params: Promise<
 
   // 同じカテゴリの他の作品（カテゴリセル + 他作品）
   const more: Cell[] = category
-    ? [
+    ? padCells([
         { kind: 'label', category, count: siblings.length },
         ...siblings.filter((s) => s.slug !== item.slug).map((s) => ({ kind: 'item' as const, item: s })),
-      ]
+      ])
     : []
-  while (more.length % 4 !== 0) more.push({ kind: 'empty', key: `empty-${more.length}` })
 
   return (
     <>
@@ -103,7 +102,7 @@ export default async function FurnitureDetailPage({ params }: { params: Promise<
         </aside>
       </main>
 
-      {more.length > 0 && category && (
+      {siblings.length > 1 && category && (
         <section className="mt-16 md:mt-24">
           <h2 className="fx-tiny px-4 pb-2.5 md:px-5 md:pb-3">More {category.short}</h2>
           <CellGrid

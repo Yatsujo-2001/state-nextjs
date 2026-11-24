@@ -2,11 +2,13 @@
  * FURNITURE INDEX — データ
  *
  * ── 家具を追加する手順 ──────────────────────────────
- * 1. 写真を public/furniture/ に置く（例: public/furniture/curb-1.jpg）
- *    ・背景が白〜薄グレーの切り抜き写真なら fit: 'contain'（既定）
- *      → 背景色がセルのグレーに自然に溶け込みます
- *    ・背景ごと見せたい写真（シーン写真など）は fit: 'cover'
+ * 1. 写真を 4:5 に整えて public/furniture/ に置く
+ *      python3 scripts/prepare_furniture_image.py 元画像 public/furniture/<slug>.jpg
+ *    ・背景がグレー〜白のレンダー/写真 → 既定（float）。背景をセル色に合わせ、作品を中央に浮かせる
+ *      作品の大きさは --fill 0.6〜0.8 で揃える
+ *    ・床や壁ごと見せたい写真 → --mode bleed（4:5 にトリミングのみ）
  * 2. 下の ITEMS に1件追加する。images の1枚目が INDEX のサムネイルになります
+ *    （加工していない白背景の切り抜き写真をそのまま使う場合は fit: 'contain'）
  * 3. 並び順 = ITEMS の並び順（カテゴリごとにまとめて表示されます）
  *
  * ── カテゴリを追加・変更する ─────────────────────────
@@ -50,7 +52,7 @@ export type FurnitureItem = {
   year?: string
   /** /furniture/xxx.jpg 形式。1枚目がサムネイル。未設定ならプレースホルダー表示 */
   images?: string[]
-  /** 'contain'（切り抜き・既定）| 'cover'（全面） */
+  /** 'cover'（既定・4:5 に整えた画像）| 'contain'（未加工の白背景切り抜き） */
   fit?: 'contain' | 'cover'
   material?: string
   /** 例: W1200 × D600 × H400 mm */
@@ -73,7 +75,7 @@ export const CATEGORIES: Category[] = [
     short: 'SEATS',
     definition:
       'SEAT [síːt] noun. 腰を下ろすための家具。身体を預け、時間を過ごすための小さな居場所。',
-    labelPosition: 3,
+    labelPosition: 1,
   },
   {
     id: 'storage',
@@ -81,7 +83,7 @@ export const CATEGORIES: Category[] = [
     short: 'STORAGE',
     definition:
       'STORAGE [stɔ́ːridʒ] noun. ものを収め、整えるための家具。しまうことと見せることのあいだを設計する。',
-    labelPosition: 0,
+    labelPosition: 1,
   },
   {
     id: 'lighting',
@@ -89,7 +91,7 @@ export const CATEGORIES: Category[] = [
     short: 'LIGHTING',
     definition:
       'LIGHTING [láitiŋ] noun. 光を灯し、空間に陰影を与える道具。灯っていない時間も、ひとつのオブジェとして。',
-    labelPosition: 2,
+    labelPosition: 0,
   },
   {
     id: 'objects',
@@ -102,7 +104,8 @@ export const CATEGORIES: Category[] = [
 ]
 
 /**
- * ↓ いまはサンプル。写真が届いたものから差し替えていきます。
+ * 作品名・年・素材・サイズ・説明は未確定（仮の名前）。分かり次第入れる。
+ * 項目を書かなければ INDEX では非表示、詳細ページでは「—」になります。
  */
 export const ITEMS: FurnitureItem[] = [
   // TABLES
@@ -111,35 +114,42 @@ export const ITEMS: FurnitureItem[] = [
     name: 'Table 01',
     type: 'Low table',
     category: 'tables',
-    year: '2026',
-    // images: ['/furniture/table-01-1.jpg', '/furniture/table-01-2.jpg'],
-    material: 'Steel, Oak',
-    size: 'W1200 × D600 × H350 mm',
-    description:
-      'ここに作品の説明が入ります。素材の選び方、かたちの由来、使われる場面など。2〜4行程度がちょうどよい長さです。',
+    images: ['/furniture/table-01.jpg'],
   },
-  { slug: 'table-02', name: 'Table 02', type: 'Side table', category: 'tables', year: '2026' },
-  { slug: 'table-03', name: 'Table 03', type: 'Dining table', category: 'tables', year: '2025' },
 
   // SEATS
-  { slug: 'seat-01', name: 'Seat 01', type: 'Stool', category: 'seats', year: '2026' },
-  { slug: 'seat-02', name: 'Seat 02', type: 'Bar stool', category: 'seats', year: '2025' },
-  { slug: 'seat-03', name: 'Seat 03', type: 'Lounge chair', category: 'seats', year: '2025' },
+  {
+    slug: 'seat-01',
+    name: 'Seat 01',
+    type: 'Chair',
+    category: 'seats',
+    images: ['/furniture/seat-01.jpg'],
+  },
+  {
+    slug: 'seat-02',
+    name: 'Seat 02',
+    type: 'Lounge chair',
+    category: 'seats',
+    images: ['/furniture/seat-02.jpg'],
+  },
 
   // STORAGE
-  { slug: 'storage-01', name: 'Storage 01', type: 'Wall shelf', category: 'storage', year: '2026' },
-  { slug: 'storage-02', name: 'Storage 02', type: 'Sideboard', category: 'storage', year: '2025' },
-  { slug: 'storage-03', name: 'Storage 03', type: 'Bookshelf', category: 'storage', year: '2025' },
+  {
+    slug: 'storage-01',
+    name: 'Storage 01',
+    type: 'Shelf',
+    category: 'storage',
+    images: ['/furniture/storage-01.jpg'],
+  },
 
   // LIGHTING
-  { slug: 'lighting-01', name: 'Lighting 01', type: 'Table lamp', category: 'lighting', year: '2026' },
-  { slug: 'lighting-02', name: 'Lighting 02', type: 'Floor lamp', category: 'lighting', year: '2025' },
-  { slug: 'lighting-03', name: 'Lighting 03', type: 'Pendant', category: 'lighting', year: '2025' },
-
-  // OBJECTS
-  { slug: 'object-01', name: 'Object 01', type: 'Tray', category: 'objects', year: '2026' },
-  { slug: 'object-02', name: 'Object 02', type: 'Vase', category: 'objects', year: '2026' },
-  { slug: 'object-03', name: 'Object 03', type: 'Bookend', category: 'objects', year: '2025' },
+  {
+    slug: 'lighting-01',
+    name: 'Lighting 01',
+    type: 'Table lamp',
+    category: 'lighting',
+    images: ['/furniture/lighting-01.jpg'],
+  },
 ]
 
 /* ───────────── helpers ───────────── */
@@ -165,12 +175,25 @@ export function itemNumber(item: FurnitureItem) {
 export type Cell =
   | { kind: 'label'; category: Category; count: number }
   | { kind: 'item'; item: FurnitureItem }
-  | { kind: 'empty'; key: string }
+  | { kind: 'empty'; key: string; desktopOnly: boolean }
+
+/**
+ * 最後の行を空セルで埋める。PC（4列）では 4 の倍数に、
+ * スマホ（2列）では偶数に揃え、スマホで余る空セルは desktopOnly にする。
+ */
+export function padCells(cells: Cell[]): Cell[] {
+  const out = [...cells]
+  const mobileFill = out.length % 2
+  for (let i = 0; out.length % 4 !== 0; i++) {
+    out.push({ kind: 'empty', key: `empty-${out.length}`, desktopOnly: i >= mobileFill })
+  }
+  return out
+}
 
 /**
  * グリッドに並べるセル列を組み立てる。
  * 各カテゴリの商品列の labelPosition 番目にカテゴリセルを差し込み、
- * 最後は 4 の倍数になるよう空セルで埋める（2列・4列どちらでも行が揃う）。
+ * 最後の行を空セルで埋める。
  */
 export function buildCells(filter: string | null): Cell[] {
   const cats = filter ? CATEGORIES.filter((c) => c.id === filter) : CATEGORIES
@@ -183,6 +206,5 @@ export function buildCells(filter: string | null): Cell[] {
     row.splice(pos, 0, { kind: 'label', category, count: items.length })
     cells.push(...row)
   }
-  while (cells.length % 4 !== 0) cells.push({ kind: 'empty', key: `empty-${cells.length}` })
-  return cells
+  return padCells(cells)
 }

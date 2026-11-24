@@ -27,7 +27,7 @@ export function ItemImage({
       </div>
     )
   }
-  const contain = (item.fit ?? 'contain') === 'contain'
+  const contain = item.fit === 'contain'
   return (
     <Image
       src={src}
@@ -100,8 +100,14 @@ export function LabelCell({
   )
 }
 
-export function EmptyCell({ style }: { style?: React.CSSProperties }) {
-  return <div className={`fx-in bg-[var(--fx-cell-soft)] ${CELL}`} style={style} aria-hidden />
+export function EmptyCell({ style, desktopOnly }: { style?: React.CSSProperties; desktopOnly?: boolean }) {
+  return (
+    <div
+      className={`fx-in bg-[var(--fx-cell-soft)] ${CELL} ${desktopOnly ? 'hidden md:block' : ''}`}
+      style={style}
+      aria-hidden
+    />
+  )
 }
 
 /* ── グリッド本体 ── */
@@ -136,7 +142,7 @@ export function CellGrid({
             />
           )
         }
-        return <EmptyCell key={cell.key} style={style} />
+        return <EmptyCell key={cell.key} style={style} desktopOnly={cell.desktopOnly} />
       })}
     </div>
   )
