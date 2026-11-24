@@ -1,7 +1,6 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import Link from 'next/link'
 import { CATEGORIES, ITEMS, SITE, buildCells, getCategory, itemsIn } from '@/lib/furniture'
 import { CellGrid } from './_components/cells'
 
@@ -44,10 +43,7 @@ export default function FurnitureIndex() {
   return (
     <>
       <header className="px-4 pt-3 md:px-5 md:pt-4">
-        <div className="fx-tiny flex items-center justify-between">
-          <Link href={SITE.brandHref} className="fx-ulink">
-            {SITE.brand}
-          </Link>
+        <div className="fx-tiny flex items-center justify-end">
           <span className="tabular-nums text-[var(--fx-muted)]">
             {String(ITEMS.length).padStart(3, '0')} pieces
           </span>
@@ -97,7 +93,7 @@ export default function FurnitureIndex() {
 
       <footer className="fx-tiny flex items-center justify-between px-4 pb-6 pt-10 md:px-5 md:pt-16">
         <span className="text-[var(--fx-muted)]">
-          © {year} {SITE.brand}
+          © {year}
         </span>
         <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="fx-ulink">
           Back to top ↑

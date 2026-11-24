@@ -3,7 +3,7 @@ import { SITE } from '@/lib/furniture'
 import FurnitureIndex from './FurnitureIndex'
 
 export const metadata: Metadata = {
-  title: `${SITE.title} | ${SITE.brand}`,
+  title: SITE.title,
   description: SITE.description,
 }
 

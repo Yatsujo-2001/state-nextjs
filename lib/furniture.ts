@@ -20,9 +20,6 @@
 export const SITE = {
   /** ページ上部の大見出し */
   title: 'FURNITURE INDEX',
-  /** 左上の小さなブランド表記（クリックで href へ） */
-  brand: 'STATE',
-  brandHref: '/',
   /** ページ説明（meta description） */
   description: 'デザインした家具のインデックス。',
 }

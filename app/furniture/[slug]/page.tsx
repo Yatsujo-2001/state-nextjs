@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const item = getItem(slug)
   if (!item) return {}
   return {
-    title: `${item.name} — ${item.type} | ${SITE.brand}`,
+    title: `${item.name} — ${item.type} | ${SITE.title}`,
     description: item.description ?? SITE.description,
   }
 }
@@ -114,7 +114,7 @@ export default async function FurnitureDetailPage({ params }: { params: Promise<
 
       <footer className="fx-tiny flex items-center justify-between px-4 pb-6 pt-10 md:px-5 md:pt-16">
         <span className="text-[var(--fx-muted)]">
-          © {new Date().getFullYear()} {SITE.brand}
+          © {new Date().getFullYear()}
         </span>
         <Link href="/furniture/" className="fx-ulink">
           Index ↑
