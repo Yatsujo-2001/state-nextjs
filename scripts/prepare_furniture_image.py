@@ -47,7 +47,7 @@ def flatten_rows(a: np.ndarray, strip: float = 0.12) -> np.ndarray:
     k = max(4, int(w * strip))
     side = np.concatenate([a[:, :k], a[:, -k:]], axis=1)
     bg = smooth1d(np.median(side, axis=1), max(4.0, h * 0.03))
-    g_row = np.clip(CELL / np.maximum(bg, 1), 0.8, 1.7)[:, None, :]
+    g_row = np.clip(CELL / np.maximum(bg, 1), 0.8, 2.0)[:, None, :]
     # 作品の色はなるべく変えない：背景に近い色の画素だけ行ごとの補正を強く掛ける
     g_obj = np.clip(CELL / np.median(side.reshape(-1, 3), axis=0), 0.85, 1.15)
     dist = np.linalg.norm(a - bg[:, None, :], axis=2, keepdims=True)
