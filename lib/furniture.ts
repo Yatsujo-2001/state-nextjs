@@ -83,7 +83,7 @@ export const CATEGORIES: Category[] = [
     short: 'STORAGE',
     definition:
       'STORAGE [stɔ́ːridʒ] noun. ものを収め、整えるための家具。しまうことと見せることのあいだを設計する。',
-    labelPosition: 1,
+    labelPosition: 0,
   },
   {
     id: 'lighting',
@@ -132,6 +132,13 @@ export const ITEMS: FurnitureItem[] = [
     category: 'seats',
     images: ['/furniture/seat-02.jpg'],
   },
+  {
+    slug: 'seat-03',
+    name: 'Seat 03',
+    type: 'Bench',
+    category: 'seats',
+    images: ['/furniture/seat-03.jpg'],
+  },
 
   // STORAGE
   {
@@ -149,6 +156,13 @@ export const ITEMS: FurnitureItem[] = [
     type: 'Table lamp',
     category: 'lighting',
     images: ['/furniture/lighting-01.jpg'],
+  },
+  {
+    slug: 'lighting-02',
+    name: 'Lighting 02',
+    type: 'Floor lamp',
+    category: 'lighting',
+    images: ['/furniture/lighting-02.jpg'],
   },
 ]
 

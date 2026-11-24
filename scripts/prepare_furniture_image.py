@@ -13,6 +13,9 @@
   --mode bleed
       床や壁ごと見せたい写真向け。4:5 に中央トリミングするだけ。
       --anchor で縦方向の切り出し位置を調整（0=上寄せ, 0.5=中央, 1=下寄せ）。
+  --mode extend
+      床や壁ごと見せたいが、縦長・横長すぎてトリミングすると作品が切れる写真向け。
+      写真全体を収め、足りない左右（または上下）は写真のふちをぼかしながら延ばして埋める。
 
 必要: Pillow, numpy
 """
@@ -36,28 +39,35 @@ def smooth1d(a: np.ndarray, sigma: float) -> np.ndarray:
     return np.stack([np.convolve(p[:, c], k, mode="valid") for c in range(3)], axis=1)
 
 
-def float_mode(img: Image.Image, fill: float, feather: float) -> Image.Image:
+def float_mode(img: Image.Image, fill: float, feather: float, extend: bool = False) -> Image.Image:
+    """extend=True のときは色合わせとセル色へのフェードをせず、写真の床や壁をそのまま外側へ延ばす"""
     a = np.asarray(img, dtype=np.float32)
     h, w, _ = a.shape
 
     # 1. 背景（外周）の色をセル色に合わせる
-    st = max(2, int(min(w, h) * 0.006))
-    border = np.concatenate(
-        [a[:st].reshape(-1, 3), a[-st:].reshape(-1, 3), a[:, :st].reshape(-1, 3), a[:, -st:].reshape(-1, 3)]
-    )
-    gain = np.clip(CELL / np.median(border, axis=0), 0.85, 1.15)
-    a = np.clip(a * gain, 0, 255)
+    if not extend:
+        st = max(2, int(min(w, h) * 0.006))
+        border = np.concatenate(
+            [a[:st].reshape(-1, 3), a[-st:].reshape(-1, 3), a[:, :st].reshape(-1, 3), a[:, -st:].reshape(-1, 3)]
+        )
+        gain = np.clip(CELL / np.median(border, axis=0), 0.85, 1.15)
+        a = np.clip(a * gain, 0, 255)
 
     # 2. キャンバス内に収まるよう縮小
     s = min(OUT_W * fill / w, OUT_H * fill / h)
     nw, nh = round(w * s), round(h * s)
     a = np.asarray(Image.fromarray(a.astype(np.uint8)).resize((nw, nh), Image.LANCZOS), dtype=np.float32)
+    left, top = (OUT_W - nw) // 2, (OUT_H - nh) // 2
 
     # 2.5 写真のふち（内側の細い帯）だけ少しぼかし、延長部分とつなぎ目なく接続する
+    #     （キャンバスの端に接している辺はそのまま）
     band = max(6.0, min(nw, nh) * 0.035)
     soft = np.asarray(Image.fromarray(a.astype(np.uint8)).filter(ImageFilter.GaussianBlur(band * 0.8)), dtype=np.float32)
     iy, ix = np.mgrid[0:nh, 0:nw]
-    d_in = np.minimum(np.minimum(ix, nw - 1 - ix), np.minimum(iy, nh - 1 - iy))
+    far = np.full((nh, nw), np.inf)
+    dx_in = np.minimum(ix, nw - 1 - ix) if left > 0 else far
+    dy_in = np.minimum(iy, nh - 1 - iy) if top > 0 else far
+    d_in = np.minimum(dx_in, dy_in)
     w_in = np.clip(1 - d_in / band, 0, 1)[..., None]
     a = a * (1 - w_in) + soft * w_in
 
@@ -69,7 +79,6 @@ def float_mode(img: Image.Image, fill: float, feather: float) -> Image.Image:
     e[-1] = smooth1d(a[-st:].mean(0), sig)
     e[:, 0] = smooth1d(a[:, :st].mean(1), sig)
     e[:, -1] = smooth1d(a[:, -st:].mean(1), sig)
-    left, top = (OUT_W - nw) // 2, (OUT_H - nh) // 2
     canvas = np.pad(e, ((top, OUT_H - nh - top), (left, OUT_W - nw - left), (0, 0)), mode="edge")
     canvas[top : top + nh, left : left + nw] = a
 
@@ -83,6 +92,8 @@ def float_mode(img: Image.Image, fill: float, feather: float) -> Image.Image:
         Image.fromarray(canvas.astype(np.uint8)).filter(ImageFilter.GaussianBlur(OUT_W * 0.035)), dtype=np.float32
     )
     canvas = canvas + (blurred - canvas) * np.clip(t * 2.5, 0, 1)
+    if extend:
+        return Image.fromarray(np.clip(canvas, 0, 255).astype(np.uint8))
     t = t * t * (3 - 2 * t)
     out = canvas * (1 - t) + CELL * t
     return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
@@ -109,14 +120,19 @@ def main() -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("src")
     p.add_argument("dst")
-    p.add_argument("--mode", choices=["float", "bleed"], default="float")
+    p.add_argument("--mode", choices=["float", "bleed", "extend"], default="float")
     p.add_argument("--fill", type=float, default=0.74)
     p.add_argument("--feather", type=float, default=0.9, help="余白の何割でセル色まで溶かすか")
     p.add_argument("--anchor", type=float, default=0.5)
     args = p.parse_args()
 
     img = Image.open(args.src).convert("RGB")
-    out = float_mode(img, args.fill, args.feather) if args.mode == "float" else bleed_mode(img, args.anchor)
+    if args.mode == "float":
+        out = float_mode(img, args.fill, args.feather)
+    elif args.mode == "extend":
+        out = float_mode(img, 1.0, args.feather, extend=True)
+    else:
+        out = bleed_mode(img, args.anchor)
     out.save(args.dst, "JPEG", quality=86, optimize=True, progressive=True)
     print(f"{args.dst}  {out.width}x{out.height}")
 
