@@ -48,10 +48,20 @@ def flatten_rows(a: np.ndarray, strip: float = 0.12) -> np.ndarray:
     side = np.concatenate([a[:, :k], a[:, -k:]], axis=1)
     bg = smooth1d(np.median(side, axis=1), max(4.0, h * 0.03))
     g_row = np.clip(CELL / np.maximum(bg, 1), 0.8, 2.0)[:, None, :]
-    # 作品の色はなるべく変えない：背景に近い色の画素だけ行ごとの補正を強く掛ける
+    # 作品の色は変えず、背景だけを行ごとに補正する。作品かどうかは2通りで判定して合成：
+    #  - 画素単位：背景色から離れた画素＝作品（輪郭ぎわの背景まできちんと補正でき、黒ずんだ縁が出ない）
+    #  - 領域単位：ぼかした画像で作品のかたまりを見つけ、少し内側に縮めたもの
+    #    （白っぽい作品の中の、背景色に近い汚れや影だけが明るくなって斑になるのを防ぐ）
     g_obj = np.clip(CELL / np.median(side.reshape(-1, 3), axis=0), 0.85, 1.15)
-    dist = np.linalg.norm(a - bg[:, None, :], axis=2, keepdims=True)
-    m = np.clip(1 - (dist - 12) / 36, 0, 1)
+    dist_px = np.linalg.norm(a - bg[:, None, :], axis=2)
+    obj_px = np.clip((dist_px - 12) / 36, 0, 1)
+    r = max(2.0, w * 0.01)
+    ab = np.asarray(Image.fromarray(a.astype(np.uint8)).filter(ImageFilter.GaussianBlur(r)), dtype=np.float32)
+    dist_reg = np.linalg.norm(ab - bg[:, None, :], axis=2)
+    reg = Image.fromarray((np.clip((dist_reg - 10) / 20, 0, 1) * 255).astype(np.uint8))
+    reg = reg.filter(ImageFilter.MinFilter(int(4 * r) | 1)).filter(ImageFilter.GaussianBlur(r / 2))
+    obj = np.maximum(obj_px, np.asarray(reg, dtype=np.float32) / 255)
+    m = (1 - obj)[..., None]
     gain = g_obj + (g_row - g_obj) * m
     return np.clip(a * gain, 0, 255)
 

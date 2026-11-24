@@ -83,6 +83,14 @@ export const CATEGORIES: Category[] = [
     labelPosition: 1,
   },
   {
+    id: 'screens',
+    label: 'SCREENS',
+    short: 'SCREENS',
+    definition:
+      'SCREEN [skríːn] noun. 空間をゆるやかに仕切る家具。視線をさえぎりながら、光と気配は通す。',
+    labelPosition: 1,
+  },
+  {
     id: 'lighting',
     label: 'LIGHTING',
     short: 'LIGHTING',
@@ -172,6 +180,15 @@ export const ITEMS: FurnitureItem[] = [
     type: 'Tray stand',
     category: 'storage',
     images: ['/furniture/storage-02.jpg'],
+  },
+
+  // SCREENS
+  {
+    slug: 'screen-01',
+    name: 'Screen 01',
+    type: 'Folding screen',
+    category: 'screens',
+    images: ['/furniture/screen-01.jpg'],
   },
 
   // LIGHTING
