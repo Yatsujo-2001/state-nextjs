@@ -10,7 +10,9 @@
       背景の明るさをセルのグレーに合わせ、周囲に余白を足してふちをぼかし、
       作品をセルの中央に浮かせる（INDEX の見本の雰囲気）。
       --fill で作品の大きさを調整（画像がセル幅・高さの何割に収まるか）。
-      --flatten を付けると、上が暗い・下が明るいなど背景のグラデーションを行ごとにならす。
+      --flatten を付けると、上が暗い・下が明るいなど背景のグラデーションをならす。
+  --crop x0,y0,x1,y1
+      先に元画像を切り抜く。作品の周りの余白が大きく、作品が小さく見える写真に。
   --mode bleed
       床や壁ごと見せたい写真向け。4:5 に中央トリミングするだけ。
       --anchor で縦方向の切り出し位置を調整（0=上寄せ, 0.5=中央, 1=下寄せ）。
@@ -40,30 +42,59 @@ def smooth1d(a: np.ndarray, sigma: float) -> np.ndarray:
     return np.stack([np.convolve(p[:, c], k, mode="valid") for c in range(3)], axis=1)
 
 
+def box2d(a: np.ndarray, rx: int, ry: int) -> np.ndarray:
+    """(h, w, c) 配列の矩形平均（横 ±rx, 縦 ±ry）。端は端の値で延長。"""
+    def box1d(x: np.ndarray, r: int, axis: int) -> np.ndarray:
+        pad = [(0, 0)] * x.ndim
+        pad[axis] = (r + 1, r)
+        c = np.cumsum(np.pad(x, pad, mode="edge"), axis=axis, dtype=np.float64)
+        n = x.shape[axis]
+        hi = np.take(c, np.arange(2 * r + 1, 2 * r + 1 + n), axis=axis)
+        lo = np.take(c, np.arange(0, n), axis=axis)
+        return ((hi - lo) / (2 * r + 1)).astype(np.float32)
+    return box1d(box1d(a, rx, 1), ry, 0)
+
+
 def flatten_rows(a: np.ndarray, strip: float = 0.12) -> np.ndarray:
     """背景の上下グラデーションをならす：左右の端（背景だけの帯）から行ごとの背景色を推定し、
     各行をセル色に合わせる。作品が左右の端に掛かっていない写真に使う。"""
     h, w, _ = a.shape
     k = max(4, int(w * strip))
     side = np.concatenate([a[:, :k], a[:, -k:]], axis=1)
-    bg = smooth1d(np.median(side, axis=1), max(4.0, h * 0.03))
-    g_row = np.clip(CELL / np.maximum(bg, 1), 0.8, 2.0)[:, None, :]
+    # 行ごとの中央値は安定しているので、ならしは弱め（急な明暗の切り替わりにも追従させる）
+    bg = smooth1d(np.median(side, axis=1), max(2.0, h * 0.004))
+    g_row = np.clip(CELL / np.maximum(bg, 1), 0.8, 3.5)[:, None, :]
     # 作品の色は変えず、背景だけを行ごとに補正する。作品かどうかは2通りで判定して合成：
     #  - 画素単位：背景色から離れた画素＝作品（輪郭ぎわの背景まできちんと補正でき、黒ずんだ縁が出ない）
     #  - 領域単位：ぼかした画像で作品のかたまりを見つけ、少し内側に縮めたもの
     #    （白っぽい作品の中の、背景色に近い汚れや影だけが明るくなって斑になるのを防ぐ）
     g_obj = np.clip(CELL / np.median(side.reshape(-1, 3), axis=0), 0.85, 1.15)
-    dist_px = np.linalg.norm(a - bg[:, None, :], axis=2)
-    obj_px = np.clip((dist_px - 12) / 36, 0, 1)
+    img8 = Image.fromarray(a.astype(np.uint8))
+    # 画素単位（1〜2px の粒ノイズを作品と誤認しないよう、ごく軽くぼかしてから判定）
+    a_px = np.asarray(img8.filter(ImageFilter.GaussianBlur(max(1.0, w * 0.0015))), dtype=np.float32)
+    obj_px = np.clip((np.linalg.norm(a_px - bg[:, None, :], axis=2) - 12) / 36, 0, 1)
     r = max(2.0, w * 0.01)
-    ab = np.asarray(Image.fromarray(a.astype(np.uint8)).filter(ImageFilter.GaussianBlur(r)), dtype=np.float32)
-    dist_reg = np.linalg.norm(ab - bg[:, None, :], axis=2)
-    reg = Image.fromarray((np.clip((dist_reg - 10) / 20, 0, 1) * 255).astype(np.uint8))
+    ab = np.asarray(img8.filter(ImageFilter.GaussianBlur(r)), dtype=np.float32)
+    obj_soft = np.clip((np.linalg.norm(ab - bg[:, None, :], axis=2) - 10) / 20, 0, 1)
+    reg = Image.fromarray((obj_soft * 255).astype(np.uint8))
     reg = reg.filter(ImageFilter.MinFilter(int(4 * r) | 1)).filter(ImageFilter.GaussianBlur(r / 2))
     obj = np.maximum(obj_px, np.asarray(reg, dtype=np.float32) / 255)
     m = (1 - obj)[..., None]
-    gain = g_obj + (g_row - g_obj) * m
-    return np.clip(a * gain, 0, 255)
+
+    # 背景の明るさを「行ごと」ではなく位置ごとに推定する（中央と端で明るさが違う床の境目なども追従）。
+    # 作品の周りを除いた背景だけを、横に広く・縦に狭くならして求め、求まらない所は行ごとの値を使う。
+    bgmask = Image.fromarray(((1 - obj_soft) * 255).astype(np.uint8)).filter(ImageFilter.MinFilter(int(4 * r) | 1))
+    bm = np.asarray(bgmask, dtype=np.float32)[..., None] / 255
+    rx, ry = max(4, int(w * 0.06)), max(1, int(h * 0.004))
+    num = box2d(a * bm, rx, ry)
+    den = box2d(np.repeat(bm, 3, axis=2), rx, ry)
+    bg2d = np.where(den > 0.05, num / np.maximum(den, 1e-6), np.broadcast_to(bg[:, None, :], a.shape))
+    g_px = np.clip(CELL / np.maximum(bg2d, 1), 0.8, 3.5)
+    gain = g_obj + (g_px - g_obj) * m
+    out = np.clip(a * gain, 0, 255)
+    # 暗い背景を大きく持ち上げると粒状ノイズも目立つので、背景部分だけ軽くぼかす
+    soft = np.asarray(Image.fromarray(out.astype(np.uint8)).filter(ImageFilter.GaussianBlur(max(1.0, w * 0.002))), dtype=np.float32)
+    return out + (soft - out) * m
 
 
 def float_mode(
@@ -156,9 +187,12 @@ def main() -> None:
     p.add_argument("--feather", type=float, default=0.9, help="余白の何割でセル色まで溶かすか")
     p.add_argument("--anchor", type=float, default=0.5)
     p.add_argument("--flatten", action="store_true", help="float: 背景の上下グラデーションを行ごとにならす")
+    p.add_argument("--crop", help="先に元画像を切り抜く（元画像のピクセルで x0,y0,x1,y1）。作品の周りの余白が大きい写真用")
     args = p.parse_args()
 
     img = Image.open(args.src).convert("RGB")
+    if args.crop:
+        img = img.crop(tuple(int(v) for v in args.crop.split(",")))
     if args.mode == "float":
         out = float_mode(img, args.fill, args.feather, flatten=args.flatten)
     elif args.mode == "extend":
