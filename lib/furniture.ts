@@ -186,6 +186,13 @@ export const ITEMS: FurnitureItem[] = [
     category: 'seats',
     images: ['/furniture/seat-06.jpg'],
   },
+  {
+    slug: 'seat-07',
+    name: 'Seat 07',
+    type: 'Stool',
+    category: 'seats',
+    images: ['/furniture/seat-07.jpg'],
+  },
 
   // STORAGE
   {
