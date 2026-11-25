@@ -42,14 +42,8 @@ export default function FurnitureIndex() {
 
   return (
     <>
-      <header className="px-4 pt-3 md:px-5 md:pt-4">
-        <div className="fx-tiny flex items-center justify-end">
-          <span className="tabular-nums text-[var(--fx-muted)]">
-            {String(ITEMS.length).padStart(3, '0')} pieces
-          </span>
-        </div>
-
-        <h1 className="mt-10 font-semibold uppercase leading-[0.86] tracking-[-0.055em] text-[clamp(2.75rem,11vw,3.75rem)] md:mt-16 md:text-[clamp(3.5rem,6.4vw,7rem)]">
+      <header className="px-4 pt-16 md:px-5 md:pt-24">
+        <h1 className="font-semibold uppercase leading-[0.86] tracking-[-0.055em] text-[clamp(2.75rem,11vw,3.75rem)] md:mt-16 md:text-[clamp(3.5rem,6.4vw,7rem)]">
           {SITE.title}
         </h1>
       </header>

@@ -11,10 +11,11 @@
  *    （加工していない白背景の切り抜き写真をそのまま使う場合は fit: 'contain'）
  * 3. 並び順 = ITEMS の並び順（カテゴリごとにまとめて表示されます）
  *
+ * 4. images の2枚目以降は詳細ページにだけ表示されます（ディテール写真など）
+ *
  * ── カテゴリを追加・変更する ─────────────────────────
- * CATEGORIES を編集。labelPosition は「カテゴリ名のセルを
- * そのカテゴリの何番目に差し込むか」（0 = 先頭）。
- * 位置をばらすとグリッドにリズムが生まれます。
+ * CATEGORIES を編集。並び順 = CATEGORIES の順。
+ * カテゴリ名のセルは、各カテゴリの先頭に置かれます。
  */
 
 export const SITE = {
@@ -33,8 +34,6 @@ export type Category = {
   short: string
   /** 辞書風の説明文（カテゴリセルの下部に表示） */
   definition: string
-  /** カテゴリセルを差し込む位置（0 = 先頭） */
-  labelPosition?: number
 }
 
 export type FurnitureItem = {
@@ -47,7 +46,7 @@ export type FurnitureItem = {
   /** CATEGORIES の id */
   category: string
   year?: string
-  /** /furniture/xxx.jpg 形式。1枚目がサムネイル。未設定ならプレースホルダー表示 */
+  /** /furniture/xxx.jpg 形式。1枚目が INDEX のサムネイル、2枚目以降は詳細ページのみ。未設定ならプレースホルダー表示 */
   images?: string[]
   /** 'cover'（既定・4:5 に整えた画像）| 'contain'（未加工の白背景切り抜き） */
   fit?: 'contain' | 'cover'
@@ -64,7 +63,6 @@ export const CATEGORIES: Category[] = [
     short: 'TABLES',
     definition:
       'TABLE [téibl] noun. 天板と脚から成る家具。食べる、書く、並べる——暮らしの営みを受け止める水平面。',
-    labelPosition: 1,
   },
   {
     id: 'seats',
@@ -72,7 +70,6 @@ export const CATEGORIES: Category[] = [
     short: 'SEATS',
     definition:
       'SEAT [síːt] noun. 腰を下ろすための家具。身体を預け、時間を過ごすための小さな居場所。',
-    labelPosition: 2,
   },
   {
     id: 'storage',
@@ -80,7 +77,6 @@ export const CATEGORIES: Category[] = [
     short: 'STORAGE',
     definition:
       'STORAGE [stɔ́ːridʒ] noun. ものを収め、整えるための家具。しまうことと見せることのあいだを設計する。',
-    labelPosition: 0,
   },
   {
     id: 'screens',
@@ -88,7 +84,6 @@ export const CATEGORIES: Category[] = [
     short: 'SCREENS',
     definition:
       'SCREEN [skríːn] noun. 空間をゆるやかに仕切る家具。視線をさえぎりながら、光と気配は通す。',
-    labelPosition: 0,
   },
   {
     id: 'lighting',
@@ -96,7 +91,6 @@ export const CATEGORIES: Category[] = [
     short: 'LIGHTING',
     definition:
       'LIGHTING [láitiŋ] noun. 光を灯し、空間に陰影を与える道具。灯っていない時間も、ひとつのオブジェとして。',
-    labelPosition: 1,
   },
   {
     id: 'objects',
@@ -104,7 +98,6 @@ export const CATEGORIES: Category[] = [
     short: 'OBJECTS',
     definition:
       'OBJECT [ɑ́bdʒikt] noun. 用途の境界にある小さなもの。空間の余白に置かれ、手に触れられるための形。',
-    labelPosition: 0,
   },
 ]
 
@@ -192,6 +185,13 @@ export const ITEMS: FurnitureItem[] = [
     type: 'Stool',
     category: 'seats',
     images: ['/furniture/seat-07.jpg'],
+  },
+  {
+    slug: 'seat-08',
+    name: 'Seat 08',
+    type: 'Modular sofa',
+    category: 'seats',
+    images: ['/furniture/seat-08.jpg', '/furniture/seat-08-2.jpg', '/furniture/seat-08-3.jpg'],
   },
 
   // STORAGE
@@ -283,8 +283,7 @@ export function padCells(cells: Cell[]): Cell[] {
 
 /**
  * グリッドに並べるセル列を組み立てる。
- * 各カテゴリの商品列の labelPosition 番目にカテゴリセルを差し込み、
- * 最後の行を空セルで埋める。
+ * カテゴリごとに「カテゴリ名のセル → 作品セル」の順で並べ、最後の行を空セルで埋める。
  */
 export function buildCells(filter: string | null): Cell[] {
   const cats = filter ? CATEGORIES.filter((c) => c.id === filter) : CATEGORIES
@@ -292,10 +291,8 @@ export function buildCells(filter: string | null): Cell[] {
   for (const category of cats) {
     const items = itemsIn(category.id)
     if (!items.length) continue
-    const pos = Math.min(Math.max(category.labelPosition ?? 0, 0), items.length)
-    const row: Cell[] = items.map((item) => ({ kind: 'item', item }))
-    row.splice(pos, 0, { kind: 'label', category, count: items.length })
-    cells.push(...row)
+    cells.push({ kind: 'label', category, count: items.length })
+    cells.push(...items.map((item) => ({ kind: 'item' as const, item })))
   }
   return padCells(cells)
 }

@@ -91,6 +91,9 @@ a {
 html:has(.fx-root),
 body:has(.fx-root) {
   background: #f0f0ee;
+  /* サイト共通の overflow-x: hidden だと詳細ページの情報欄の sticky が効かないため、
+     はみ出しを隠しつつスクロール領域を作らない clip にする */
+  overflow-x: clip;
 }
 html:has(.fx-root) ::-webkit-scrollbar-track { background: #f0f0ee; }
 html:has(.fx-root) ::-webkit-scrollbar-thumb { background: #141414; }
