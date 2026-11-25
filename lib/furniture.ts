@@ -225,6 +225,13 @@ export const ITEMS: FurnitureItem[] = [
     category: 'screens',
     images: ['/furniture/screen-01.jpg'],
   },
+  {
+    slug: 'screen-02',
+    name: 'Screen 02',
+    type: 'Folding screen',
+    category: 'screens',
+    images: ['/furniture/screen-02.jpg'],
+  },
 
   // LIGHTING
   {
