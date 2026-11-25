@@ -193,6 +193,13 @@ export const ITEMS: FurnitureItem[] = [
     category: 'seats',
     images: ['/furniture/seat-08.jpg', '/furniture/seat-08-2.jpg', '/furniture/seat-08-3.jpg'],
   },
+  {
+    slug: 'seat-09',
+    name: 'Seat 09',
+    type: 'Modular armchair',
+    category: 'seats',
+    images: ['/furniture/seat-09.jpg'],
+  },
 
   // STORAGE
   {
