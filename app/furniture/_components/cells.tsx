@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Category, Cell, FurnitureItem } from '@/lib/furniture'
 import { itemNumber } from '@/lib/furniture'
+import { withBase } from '@/lib/base-path'
 
 const CELL = 'relative aspect-[4/5] overflow-hidden'
 
@@ -30,7 +31,7 @@ export function ItemImage({
   const contain = item.fit === 'contain'
   return (
     <Image
-      src={src}
+      src={withBase(src)}
       alt={`${item.name} — ${item.type}`}
       fill
       sizes={sizes}
@@ -85,7 +86,7 @@ export function LabelCell({
       style={style}
     >
       <div className="fx-tiny flex items-baseline justify-between gap-2">
-        <a href={href} onClick={onClick} className="fx-ulink">
+        <a href={withBase(href)} onClick={onClick} className="fx-ulink">
           {linkText}
         </a>
         <span className="tabular-nums text-[var(--fx-muted)]">({String(count).padStart(2, '0')})</span>
