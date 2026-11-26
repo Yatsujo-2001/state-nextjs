@@ -145,7 +145,7 @@ export const ITEMS: FurnitureItem[] = [
   {
     slug: 'table-06',
     name: 'Table 06',
-    type: 'Coffee table',
+    type: 'Soban — Korean traditional table',
     category: 'tables',
     images: ['/furniture/table-06.jpg'],
   },
