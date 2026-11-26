@@ -194,6 +194,13 @@ export const ITEMS: FurnitureItem[] = [
     images: ['/furniture/seat-07.jpg'],
   },
   {
+    slug: 'seat-11',
+    name: 'Seat 11',
+    type: 'Stool',
+    category: 'seats',
+    images: ['/furniture/seat-11.jpg'],
+  },
+  {
     slug: 'seat-08',
     name: 'Seat 08',
     type: 'Modular sofa',
