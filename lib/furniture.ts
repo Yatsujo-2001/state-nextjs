@@ -290,6 +290,13 @@ export const ITEMS: FurnitureItem[] = [
     category: 'lighting',
     images: ['/furniture/lighting-04.jpg'],
   },
+  {
+    slug: 'lighting-05',
+    name: 'Lighting 05',
+    type: 'Floor lamp',
+    category: 'lighting',
+    images: ['/furniture/lighting-05.jpg'],
+  },
 ]
 
 /* ───────────── helpers ───────────── */
