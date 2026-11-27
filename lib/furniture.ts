@@ -251,6 +251,13 @@ export const ITEMS: FurnitureItem[] = [
     category: 'storage',
     images: ['/furniture/storage-03.jpg'],
   },
+  {
+    slug: 'storage-04',
+    name: 'Storage 04',
+    type: 'Umbrella stand',
+    category: 'storage',
+    images: ['/furniture/storage-04.jpg'],
+  },
 
   // SCREENS
   {
